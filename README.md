@@ -531,6 +531,13 @@ public class Navigation2Activity extends BaseActivity {
  
  
   **源码：**
+**transparent_statusbar_fit**
+```
+    <style name="transparent_statusbar_fit">
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+```
 
 **StatusNavUtils**
 ```
