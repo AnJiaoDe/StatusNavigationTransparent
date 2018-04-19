@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="white">#ffffff</color>
+    <color name="line">#e6e6e6</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_half">#66000000</color>
+    <color name="transparent_half_2">#20000000</color>
+
+    <color name="text_deep">#333333</color>
+    <color name="red">#fb484c</color>
+    <color name="halfred">#77fb484c</color>
+    <color name="halfred2">#11fb484c</color>
+    <color name="bg">#eaebed</color>
+    <color name="text_deep_est">#343434</color>
+    <color name="text_tint">#999999</color>
+    <color name="text_tint_half">#55999999</color>
+    <color name="mengban_black">#99000000</color>
+    <color name="huangse">#ffff00</color>
+    <color name="transparent_white">#22ffffff</color>
+    <!--<color name="theme">#304B90</color>-->
+    <!--<color name="theme_half">#2a5caa</color>-->
+    <color name="theme">#2a5caa</color>
+
+    <color name="theme_half">#2a5caa</color>
+
+</resources>

@@ -1,0 +1,18 @@
+<resources>
+
+    <!--&lt;!&ndash; Base application theme. &ndash;&gt;-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!--此处可自行根据项目需要设置,和状态栏导航栏透明无关-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/theme</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowSoftInputMode">stateAlwaysHidden</item>
+        <item name="android:textColor">@color/text_deep</item>
+        <item name="android:textSize">@dimen/size_3</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:launchMode">singleTop</item>
+    </style>
+
+</resources>

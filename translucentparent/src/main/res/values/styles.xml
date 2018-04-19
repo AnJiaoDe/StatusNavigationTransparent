@@ -1,0 +1,10 @@
+<resources>
+
+
+    <style name="transparent_statusbar_fit">
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+
+</resources>

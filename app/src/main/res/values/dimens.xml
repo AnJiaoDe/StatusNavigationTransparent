@@ -1,0 +1,50 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="margin_dialog">20dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="height_title">48dp</dimen>
+    <dimen name="height_main_tab">56dp</dimen>
+    <dimen name="height_btn_login">56dp</dimen>
+    <dimen name="padding_content">10dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
+    <dimen name="dp_30">30dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_50">50dp</dimen>
+    <dimen name="size_0">22sp</dimen>
+    <dimen name="size_1">18sp</dimen>
+    <dimen name="size_2">17sp</dimen>
+    <dimen name="size_3">16sp</dimen>
+    <dimen name="size_4">15sp</dimen>
+    <dimen name="size_5">14sp</dimen>
+    <dimen name="size_6">13sp</dimen>
+    <dimen name="size_7">12sp</dimen>
+    <dimen name="size_8">11sp</dimen>
+    <dimen name="size_9">10sp</dimen>
+    <dimen name="size_10">9sp</dimen>
+    <dimen name="size_11">8sp</dimen>
+    <dimen name="size_12">7sp</dimen>
+    <dimen name="size_13">6sp</dimen>
+    <dimen name="size_14">5sp</dimen>
+    <dimen name="iv_head_rect_radius">5dp</dimen>
+    <dimen name="iv_circle_border_width">1dp</dimen>
+    <dimen name="head_width">60dp</dimen>
+    <dimen name="chat_head_width">40dp</dimen>
+    <dimen name="head_width_gerenzhuye">90dp</dimen>
+    <dimen name="padding_small">5dp</dimen>
+    <dimen name="width_index">24dp</dimen>
+    <dimen name="height_min_chat_BubbleLayout">60dp</dimen>
+    <dimen name="width_max_chat_BubbleLayout">100dp</dimen>
+    <dimen name="width_chat_iv_framelayout">150dp</dimen>
+    <dimen name="height_banner">180dp</dimen>
+    <dimen name="height_banner_goods_detail">260dp</dimen>
+
+
+    <dimen name="bl_arrowHeight">12dp</dimen>
+    <dimen name="bl_cornersRadius">10dp</dimen>
+
+
+    <!--<dimen name="bl_cornersRadius">10dp</dimen>-->
+    <!--<dimen name="bl_arrowHeight">10dp</dimen>-->
+    <!--<dimen name="bl_arrowPosition">10dp</dimen>-->
+</resources>
