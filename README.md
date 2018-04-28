@@ -1,8 +1,8 @@
-[CSDN](https://blog.csdn.net/confusing_awakening/article/details/78338317)
+[简书](https://www.jianshu.com/p/afbeb24deb7f)
 
 [APK](https://github.com/AnJiaoDe/StatusNavigationTransparent/tree/master/app/build/outputs/apk)
 
-如有任何问题或者是建议，可以QQ群:安娇德IT技术交流群757173381讨论，开源库会根据需求持续更新。
+
 
 **使用方法**
 
@@ -832,5 +832,17 @@ public class ScreenUtils {
 
  
  
+
+ [GitHub](https://github.com/AnJiaoDe)
+
+[CSDN](https://blog.csdn.net/confusing_awakening)
+
+[简书](https://www.jianshu.com/u/b8159d455c69)
+
+ 微信公众号
+ ![这里写图片描述](https://img-blog.csdn.net/20180428174200810?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NvbmZ1c2luZ19hd2FrZW5pbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+QQ群
+![这里写图片描述](https://img-blog.csdn.net/20180428174035954?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NvbmZ1c2luZ19hd2FrZW5pbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
  
