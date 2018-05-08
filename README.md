@@ -543,18 +543,6 @@ public class Navigation2Activity extends BaseActivity {
 
 **StatusNavUtils**
 ```
-package com.cy.translucentparent;
-
-import android.app.Activity;
-import android.os.Build;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-
-
-/**
- * Created by lenovo on 2017/4/25.
- */
 
 public class StatusNavUtils {
 
@@ -641,17 +629,7 @@ public class StatusNavUtils {
 **StatusBarView**
 
 ```
-package com.cy.translucentparent;
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.view.View;
-
-
-
-/**
- * Created by lenovo on 2017/7/4.
- */
 
 public class StatusBarView extends View {
     private Context context;
@@ -677,20 +655,8 @@ public class StatusBarView extends View {
 **ScreenUtils**
 
 ```
-package com.cy.translucentparent;
-
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.RectF;
-import android.util.DisplayMetrics;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
 
 
-/**
- * Created by lenovo on 2017/7/4.
- */
 
 public class ScreenUtils {
 
