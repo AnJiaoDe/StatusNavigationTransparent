@@ -1,3 +1,5 @@
+
+
 [简书](https://www.jianshu.com/p/afbeb24deb7f)
 
 [APK](https://github.com/AnJiaoDe/StatusNavigationTransparent/blob/master/app/build/outputs/apk/app-debug.apk)
@@ -22,6 +24,10 @@ dependencies {
 	        compile 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.1.1'
 	}
 ```
+
+**注意：如果sync报错，是因为和com.android.tools.build:gradle 3.0有关，**
+**可以改将compile改为implementation 或者api** 
+
 
 ![Image text](gif/1.png)
 
