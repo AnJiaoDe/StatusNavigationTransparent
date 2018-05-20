@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/StatusNavigationTrans.iml" filepath="$PROJECT_DIR$/StatusNavigationTrans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StatusNavigationTransparent.iml" filepath="$PROJECT_DIR$/StatusNavigationTransparent.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/translucentparent/translucentparent.iml" filepath="$PROJECT_DIR$/translucentparent/translucentparent.iml" />
     </modules>
