@@ -21,7 +21,7 @@ allprojects {
 
 ```
 dependencies {
-	        compile 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.1.1'
+	        compile 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.1.2'
 	}
 ```
 
