@@ -1,7 +1,6 @@
 
- 微信公众号
- ![这里写图片描述](https://img-blog.csdn.net/20180428174200810?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NvbmZ1c2luZ19hd2FrZW5pbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-
+  微信公众号
+ ![这里写图片描述](http://upload-images.jianshu.io/upload_images/11866078-a6969884111cd3b4?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
  
 [简书](https://www.jianshu.com/p/afbeb24deb7f)
 
@@ -815,9 +814,8 @@ public class ScreenUtils {
 [简书](https://www.jianshu.com/u/b8159d455c69)
 
  微信公众号
- ![这里写图片描述](https://img-blog.csdn.net/20180428174200810?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NvbmZ1c2luZ19hd2FrZW5pbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+ ![这里写图片描述](http://upload-images.jianshu.io/upload_images/11866078-a6969884111cd3b4?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 QQ群
-![这里写图片描述](https://img-blog.csdn.net/20180428174035954?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NvbmZ1c2luZ19hd2FrZW5pbmc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![这里写图片描述](http://upload-images.jianshu.io/upload_images/11866078-8fa028ef79948e75?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
- 
