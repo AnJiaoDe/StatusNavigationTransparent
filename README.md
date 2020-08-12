@@ -1,47 +1,54 @@
-[推荐Android系统源码网站](https://www.androidos.net.cn/)
+文章目录
 
-  微信公众号
-  
- ![这里写图片描述](http://upload-images.jianshu.io/upload_images/11866078-a6969884111cd3b4?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
- 
-[简书](https://www.jianshu.com/u/b8159d455c69)
+GitHub：https://github.com/AnJiaoDe/StatusNavigationTransparent
 
-[APK](https://github.com/AnJiaoDe/StatusNavigationTransparent/blob/master/app/build/outputs/apk/app-debug.apk)
+使用方法
+
+注意：记得去gayhub查看最新版本，最新版本最niubility
+
+1. StatusBar半透明
+
+2. StatusBar全透明
+
+3. StatusBar透明于图片之上
+
+3. NavigationBar透明
+
+欢迎联系、指正、批评
+
+## [GitHub：https://github.com/AnJiaoDe/StatusNavigationTransparent](https://github.com/AnJiaoDe/StatusNavigationTransparent)
+
+## 使用方法
 
 
+1.工程目录下的build.gradle中添加代码：
 
-**使用方法**
-
-将libray模块复制到项目中,或者直接在build.gradle中依赖:
-
-```
+```java
 allprojects {
-		repositories {
-			
-			maven { url 'https://jitpack.io' }
-		}
-	}
+        repositories {
+            
+            maven { url 'https://jitpack.io' }
+        }
+    }
+```
+2.直接在需要使用的模块的build.gradle中添加代码：
+
+## 注意：记得去gayhub查看最新版本，最新版本最niubility
+
+```java
+implementation 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.1.7'
 ```
 
-```
-dependencies {
-	        compile 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.1.2'
-	}
-```
 
-**注意：如果sync报错，是因为和com.android.tools.build:gradle 3.0有关，**
-**可以改将compile改为implementation 或者api** 
-
-
-![Image text](gif/1.png)
-
- **注意：状态栏半透明和全透明只有4.4以上才能实现，5.0以上才能去阴影**
+![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LTQ1NzUxNTIxMGEyZGEyZGI?x-oss-process=image/format,png)
  
-  **本文只描述在activity中如何使用，fragment中使用方法类似，可以实现**
+
+ 
+**本文只描述在activity中如何使用，fragment中使用方法类似，可以实现**
  
  **首先创建全局theme**
  
-```
+```xml
 <resources>
 
     <!--&lt;!&ndash; Base application theme. &ndash;&gt;-->
@@ -63,7 +70,7 @@ dependencies {
 
 ```
 
-```
+```xml
 <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -74,7 +81,7 @@ dependencies {
  
  **然后创建BaseActivity实现StatusBar全透明**
 
-```
+```java
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
@@ -92,17 +99,17 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
 ```
 
-**1. StatusBar半透明**
+## 1. StatusBar半透明
 
 
 
 **1.1 StatusBar半透明用StatusBarView实现(4.4以上有效)**
 
 
-![Image text](gif/2.png)
+![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LTlhNjQ2N2Q4ZTNlZTNiMzI?x-oss-process=image/format,png)
 
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -138,28 +145,12 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
 ```
 
-```
-public class Status1Activity extends BaseActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trans_status_bar);
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
-}
-
-```
 
 **1.2 StatusBar半透明用setStatusBarColor实现(5.0以上有效)**
 
-![Image text](gif/3.png)
+![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LWU1MjQ2ZWQ2YjBiMmNkZjQ?x-oss-process=image/format,png)
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -192,7 +183,7 @@ public class Status1Activity extends BaseActivity {
 
 ```
 
-```
+```java
 public class Status2Activity extends BaseActivity {
 
     @Override
@@ -211,14 +202,14 @@ public class Status2Activity extends BaseActivity {
 
 ```
 
-**2. StatusBar全透明**
+## 2. StatusBar全透明
 
 
 **2.1 StatusBar全透明用fitSystemWindows实现(4.4以上有效)**
 
-![Image text](gif/4.png)
+![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LTM3NWZlNGE1Y2QyNjNkZWI?x-oss-process=image/format,png)
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -251,28 +242,12 @@ public class Status2Activity extends BaseActivity {
 
 ```
 
-```
-public class Status3Activity extends BaseActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_status3);
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
-}
-
-```
 
 **2.2 StatusBar全透明用StatusBarView实现(4.4以上有效)**
 
-![Image text](gif/5.png)
+![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LTVkZmUwMWY0OWQ1OTFiOTc?x-oss-process=image/format,png)
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -308,32 +283,16 @@ public class Status3Activity extends BaseActivity {
 
 ```
 
-```
-public class Status4Activity extends BaseActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_status4);
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
-}
-
-```
-
-**3. StatusBar透明于图片之上**
+## 3. StatusBar透明于图片之上
 
 
 
 **3.1 StatusBar半透明于图片之上用setStatusBarColor实现(5.0以上有效)**
 
-![Image text](gif/6.png)
+![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LTYwMDM3OWIyYTk2YTgwYTU?x-oss-process=image/format,png)
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -370,7 +329,7 @@ public class Status4Activity extends BaseActivity {
 
 ```
 
-```
+```java
 public class Status5Activity extends BaseActivity {
 
     @Override
@@ -392,8 +351,8 @@ public class Status5Activity extends BaseActivity {
 **3.2 StatusBar全透明于图片之上(4.4以上有效)**
 
 
-![Image text](gif/7.png)
-```
+![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LWEzZjU0ZTM3NTYxYzU5YWI?x-oss-process=image/format,png)
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -430,32 +389,16 @@ public class Status5Activity extends BaseActivity {
 
 ```
 
-```
-public class Status6Activity extends BaseActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_status6);
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
-}
-
-```
-
-**3. NavigationBar透明**
+## 3. NavigationBar透明
 
 
 
 **3.1 NavigationBar半透明用setNavigationBarColor实现(5.0以上有效)**
 
-![Image text](gif/8.png)
+![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LWM1YWQ2MzdhYWYxNGI4NTk?x-oss-process=image/format,png)
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
@@ -474,7 +417,7 @@ android:background="@color/colorPrimary">
 
 ```
 
-```
+```java
 public class Navigation1Activity extends BaseActivity {
 
     @Override
@@ -495,9 +438,9 @@ public class Navigation1Activity extends BaseActivity {
 
 **3.2 NavigationBar全透明(4.4以上有效)**
 
-![Image text](gif/9.png)
+![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LWFkNjNhNjYwNTM2MTM0NzM?x-oss-process=image/format,png)
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -517,7 +460,7 @@ public class Navigation1Activity extends BaseActivity {
 
 ```
 
-```
+```java
 public class Navigation2Activity extends BaseActivity {
 
     @Override
@@ -539,10 +482,8 @@ public class Navigation2Activity extends BaseActivity {
  
  
 
- 参考：[Android 屏幕适配](https://blog.csdn.net/confusing_awakening/article/category/6890743)
- 
- 
-  **源码：**
+
+ **源码：**
 **transparent_statusbar_fit**
 ```
     <style name="transparent_statusbar_fit">
@@ -552,8 +493,7 @@ public class Navigation2Activity extends BaseActivity {
 ```
 
 **StatusNavUtils**
-```
-
+```java
 public class StatusNavUtils {
 
 
@@ -638,9 +578,7 @@ public class StatusNavUtils {
 
 **StatusBarView**
 
-```
-
-
+```java
 public class StatusBarView extends View {
     private Context context;
     public StatusBarView(Context context) {
@@ -664,10 +602,7 @@ public class StatusBarView extends View {
 
 **ScreenUtils**
 
-```
-
-
-
+```java
 public class ScreenUtils {
 
     public static int getStatusBarHeight(Context context) {
@@ -683,141 +618,98 @@ public class ScreenUtils {
     }
 
     public static int getScreenWidth(Context context) {
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        WindowManager wm = (WindowManager) context
-                .getSystemService(Context.WINDOW_SERVICE);
 
-        wm.getDefaultDisplay().getMetrics(displayMetrics);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+
+        WindowManager wm = (WindowManager) context.getSystemService("window");
+        if (Build.VERSION.SDK_INT <= 17) {
+            wm.getDefaultDisplay().getMetrics(displayMetrics);
+        } else {
+            wm.getDefaultDisplay().getRealMetrics(displayMetrics);
+        }
         return displayMetrics.widthPixels;
     }
 
     public static int getScreenHeight(Context context) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        WindowManager wm = (WindowManager) context
-                .getSystemService(Context.WINDOW_SERVICE);
 
-        wm.getDefaultDisplay().getMetrics(displayMetrics);
+        WindowManager wm = (WindowManager) context.getSystemService("window");
+        if (Build.VERSION.SDK_INT <= 17) {
+            wm.getDefaultDisplay().getMetrics(displayMetrics);
+        } else {
+            wm.getDefaultDisplay().getRealMetrics(displayMetrics);
+        }
         return displayMetrics.heightPixels;
     }
 
+    public static int setYStart(Context context, float y) {
+
+//        if (isGroove(context)) {
+
+        return (int) (y * getScreenHeight(context)) + getStatusBarHeight(context);
+//        } else {
+//            return (int) (y * getScreenHeight(context));
+//
+//
+//        }
+    }
+
     /**
-     * 将px值转换为dip或dp值，保证尺寸大小不变
+     * 获取当前界面可视区域的高度
      *
-     * @param pxValue
-     * @param scale   （DisplayMetrics类中属性density）
+     * @param activity
      * @return
      */
-    public static int px2dp(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
+    public static int getVisibleFrameHeight(Activity activity) {
+        Rect r = new Rect();
+        //获取当前界面可视部分
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
+
+//        if (isGroove(activity)) {
+
+//            return r.bottom - r.top - getStatusBarHeight(activity);
+//        } else {
+        return r.bottom - r.top;
+//
+//        }
     }
 
     /**
-     * 将dip或dp值转换为px值，保证尺寸大小不变
+     * 获取当前界面可视区域的宽度
      *
-     * @param dipValue
-     * @param scale    （DisplayMetrics类中属性density）
+     * @param activity
      * @return
      */
-    public static int dpInt2px(Context context, int dipValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dipValue * scale + 0.5f);
-    }
-
-    public static int dp2px(Context context, int dimen_resID) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (context.getResources().getDimension(dimen_resID) * scale + 0.5f);
-    }
-
-    /**
-     * 将px值转换为sp值，保证文字大小不变
-     *
-     * @param pxValue
-     * @param fontScale （DisplayMetrics类中属性scaledDensity）
-     * @return
-     */
-    public static int px2sp(Context context, float pxValue) {
-        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
-        return (int) (pxValue / fontScale + 0.5f);
-    }
-
-    /**
-     * 将sp值转换为px值，保证文字大小不变
-     *
-     * @param spValue
-     * @param fontScale （DisplayMetrics类中属性scaledDensity）
-     * @return
-     */
-    public static int sp2px(Context context, float spValue) {
-        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
-        return (int) (spValue * fontScale + 0.5f);
-    }
-
-    /**
-     * 计算指定的 View 在屏幕中的坐标。
-     */
-    public static RectF calcViewScreenLocation(View view) {
-        int[] location = new int[2];
-        // 获取控件在屏幕中的位置，返回的数组分别为控件左顶点的 x、y 的值
-        view.getLocationOnScreen(location);
-        return new RectF(location[0], location[1], location[0] + view.getWidth(),
-                location[1] + view.getHeight());
-    }
-
-    /**
-     * 判断触摸点是否在控件内
-     */
-    public static boolean isInViewRange(View view, MotionEvent event) {
-
-        // MotionEvent event;
-        // event.getX(); 获取相对于控件自身左上角的 x 坐标值
-        // event.getY(); 获取相对于控件自身左上角的 y 坐标值
-        float x = event.getRawX(); // 获取相对于屏幕左上角的 x 坐标值
-        float y = event.getRawY(); // 获取相对于屏幕左上角的 y 坐标值
-
-        // View view;
-        RectF rect = calcViewScreenLocation(view);
-        return rect.contains(x, y);
+    public static int getVisibleFrameWidth(Activity activity) {
+        Rect r = new Rect();
+        //获取当前界面可视部分
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
+        return r.right - r.left;
     }
 }
-
 ```
-
-**更新日志**
- 
- *V1.1.1*
-  - Android屏幕适配之状态栏导航栏半透明、全透明（5.0以上去阴影），方法多样
-  
-  
-
-**License**
-
- Copyright [AnJiaoDe] [name of copyright owner]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
  
  
 
- [GitHub](https://github.com/AnJiaoDe)
 
-关注专题[Android开发常用开源库](https://www.jianshu.com/c/3ff4b3951dc5)
 
-[简书](https://www.jianshu.com/u/b8159d455c69)
+
+## 欢迎联系、指正、批评
+
+
+
+Github:[https://github.com/AnJiaoDe](https://github.com/AnJiaoDe)
+
+简书：[https://www.jianshu.com/u/b8159d455c69](https://www.jianshu.com/u/b8159d455c69)
+
+CSDN：[https://blog.csdn.net/confusing_awakening](https://blog.csdn.net/confusing_awakening)
+
+ffmpeg入门教程:[https://www.jianshu.com/p/042c7847bd8a](https://www.jianshu.com/p/042c7847bd8a)
 
  微信公众号
- ![这里写图片描述](http://upload-images.jianshu.io/upload_images/11866078-a6969884111cd3b4?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+ ![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LWZjZmJiNDUxNzVmOTlkZTA)
 
 QQ群
-![这里写图片描述](http://upload-images.jianshu.io/upload_images/11866078-8fa028ef79948e75?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+  ![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LWEzMWZmNDBhYzY4NTBhNmQ)
 
