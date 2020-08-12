@@ -1,16 +1,20 @@
 package com.cy.translucentparent;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
+import java.lang.reflect.Method;
 
 /**
- * Created by lenovo on 2017/7/4.
+ * Created by Administrator on 2018/11/20 0020.
  */
 
 public class ScreenUtils {
@@ -28,100 +32,73 @@ public class ScreenUtils {
     }
 
     public static int getScreenWidth(Context context) {
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        WindowManager wm = (WindowManager) context
-                .getSystemService(Context.WINDOW_SERVICE);
 
-        wm.getDefaultDisplay().getMetrics(displayMetrics);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+
+        WindowManager wm = (WindowManager) context.getSystemService("window");
+        if (Build.VERSION.SDK_INT <= 17) {
+            wm.getDefaultDisplay().getMetrics(displayMetrics);
+        } else {
+            wm.getDefaultDisplay().getRealMetrics(displayMetrics);
+        }
         return displayMetrics.widthPixels;
     }
 
     public static int getScreenHeight(Context context) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        WindowManager wm = (WindowManager) context
-                .getSystemService(Context.WINDOW_SERVICE);
 
-        wm.getDefaultDisplay().getMetrics(displayMetrics);
+        WindowManager wm = (WindowManager) context.getSystemService("window");
+        if (Build.VERSION.SDK_INT <= 17) {
+            wm.getDefaultDisplay().getMetrics(displayMetrics);
+        } else {
+            wm.getDefaultDisplay().getRealMetrics(displayMetrics);
+        }
         return displayMetrics.heightPixels;
     }
 
+    public static int setYStart(Context context, float y) {
+
+//        if (isGroove(context)) {
+
+        return (int) (y * getScreenHeight(context)) + getStatusBarHeight(context);
+//        } else {
+//            return (int) (y * getScreenHeight(context));
+//
+//
+//        }
+    }
+
     /**
-     * 将px值转换为dip或dp值，保证尺寸大小不变
+     * 获取当前界面可视区域的高度
      *
-     * @param pxValue
-     * @param scale   （DisplayMetrics类中属性density）
+     * @param activity
      * @return
      */
-    public static int px2dp(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
+    public static int getVisibleFrameHeight(Activity activity) {
+        Rect r = new Rect();
+        //获取当前界面可视部分
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
+
+//        if (isGroove(activity)) {
+
+//            return r.bottom - r.top - getStatusBarHeight(activity);
+//        } else {
+        return r.bottom - r.top;
+//
+//        }
     }
 
     /**
-     * 将dip或dp值转换为px值，保证尺寸大小不变
+     * 获取当前界面可视区域的宽度
      *
-     * @param dipValue
-     * @param scale    （DisplayMetrics类中属性density）
+     * @param activity
      * @return
      */
-    public static int dpInt2px(Context context, int dipValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dipValue * scale + 0.5f);
-    }
-
-    public static int dp2px(Context context, int dimen_resID) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (context.getResources().getDimension(dimen_resID) * scale + 0.5f);
-    }
-
-    /**
-     * 将px值转换为sp值，保证文字大小不变
-     *
-     * @param pxValue
-     * @param fontScale （DisplayMetrics类中属性scaledDensity）
-     * @return
-     */
-    public static int px2sp(Context context, float pxValue) {
-        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
-        return (int) (pxValue / fontScale + 0.5f);
-    }
-
-    /**
-     * 将sp值转换为px值，保证文字大小不变
-     *
-     * @param spValue
-     * @param fontScale （DisplayMetrics类中属性scaledDensity）
-     * @return
-     */
-    public static int sp2px(Context context, float spValue) {
-        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
-        return (int) (spValue * fontScale + 0.5f);
-    }
-
-    /**
-     * 计算指定的 View 在屏幕中的坐标。
-     */
-    public static RectF calcViewScreenLocation(View view) {
-        int[] location = new int[2];
-        // 获取控件在屏幕中的位置，返回的数组分别为控件左顶点的 x、y 的值
-        view.getLocationOnScreen(location);
-        return new RectF(location[0], location[1], location[0] + view.getWidth(),
-                location[1] + view.getHeight());
-    }
-
-    /**
-     * 判断触摸点是否在控件内
-     */
-    public static boolean isInViewRange(View view, MotionEvent event) {
-
-        // MotionEvent event;
-        // event.getX(); 获取相对于控件自身左上角的 x 坐标值
-        // event.getY(); 获取相对于控件自身左上角的 y 坐标值
-        float x = event.getRawX(); // 获取相对于屏幕左上角的 x 坐标值
-        float y = event.getRawY(); // 获取相对于屏幕左上角的 y 坐标值
-
-        // View view;
-        RectF rect = calcViewScreenLocation(view);
-        return rect.contains(x, y);
+    public static int getVisibleFrameWidth(Activity activity) {
+        Rect r = new Rect();
+        //获取当前界面可视部分
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
+        return r.right - r.left;
     }
 }
+
