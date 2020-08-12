@@ -13,6 +13,7 @@
         <item name="android:textSize">@dimen/size_3</item>
         <item name="android:scaleType">centerInside</item>
         <item name="android:launchMode">singleTop</item>
+        <item name="textAllCaps">false</item>
     </style>
 
 </resources>
