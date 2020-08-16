@@ -1,17 +1,18 @@
+
+
 文章目录
 
 GitHub：https://github.com/AnJiaoDe/StatusNavigationTransparent
 
 使用方法
 
+注意：如果轮子死活下载不下来，说明maven地址有毛病，你需要找到jitpack的官网首页，查看最新的官网地址
+
 注意：记得去gayhub查看最新版本，最新版本最niubility
 
 1. StatusBar半透明
-
 2. StatusBar全透明
-
 3. StatusBar透明于图片之上
-
 3. NavigationBar透明
 
 欢迎联系、指正、批评
@@ -19,24 +20,24 @@ GitHub：https://github.com/AnJiaoDe/StatusNavigationTransparent
 ## [GitHub：https://github.com/AnJiaoDe/StatusNavigationTransparent](https://github.com/AnJiaoDe/StatusNavigationTransparent)
 
 ## 使用方法
-
-
-1.工程目录下的build.gradle中添加代码：
+1.工程目录下的`build.gradle`中添加代码：
+## 注意：如果轮子死活下载不下来，说明maven地址有毛病，你需要找到jitpack的官网首页，查看最新的官网地址
 
 ```java
 allprojects {
-        repositories {
-            
-            maven { url 'https://jitpack.io' }
-        }
-    }
+		repositories {
+			        maven { url 'https://www.jitpack.io' }
+		}
+	}
 ```
 2.直接在需要使用的模块的build.gradle中添加代码：
 
 ## 注意：记得去gayhub查看最新版本，最新版本最niubility
 
 ```java
+dependencies {
 implementation 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.1.7'
+}
 ```
 
 
