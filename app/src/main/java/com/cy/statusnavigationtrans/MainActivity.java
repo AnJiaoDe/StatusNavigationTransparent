@@ -3,12 +3,16 @@ package com.cy.statusnavigationtrans;
 import android.os.Bundle;
 import android.view.View;
 
+import com.cy.translucentparent.StatusNavUtils;
+
 public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findViewById(R.id.btn_00).setOnClickListener(this);
+        findViewById(R.id.btn_0).setOnClickListener(this);
         findViewById(R.id.btn_1).setOnClickListener(this);
         findViewById(R.id.btn_2).setOnClickListener(this);
         findViewById(R.id.btn_3).setOnClickListener(this);
@@ -17,11 +21,18 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_6).setOnClickListener(this);
         findViewById(R.id.btn_7).setOnClickListener(this);
         findViewById(R.id.btn_8).setOnClickListener(this);
+        StatusNavUtils.setStatusBarColor(this,0xfff2f2f2);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btn_00:
+                startAppcompatActivity(Status00Activity.class);
+                break;
+            case R.id.btn_0:
+                startAppcompatActivity(Status0Activity.class);
+                break;
             case R.id.btn_1:
                 startAppcompatActivity(Status1Activity.class);
                 break;

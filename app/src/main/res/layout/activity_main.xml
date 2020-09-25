@@ -11,10 +11,21 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_1"
+            android:id="@+id/btn_00"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:text="StatusBar全透明(文字、icon颜色根据StatusBar颜色亮度设置为黑色)" />
+        <Button
+            android:id="@+id/btn_0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="StatusBar全透明(文字、icon颜色根据StatusBar颜色亮度设置为白色)" />
+        <Button
+            android:id="@+id/btn_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="StatusBar半透明(StatusBarView)" />
         <Button
             android:id="@+id/btn_2"
