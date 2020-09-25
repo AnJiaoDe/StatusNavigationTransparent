@@ -36,7 +36,7 @@ allprojects {
 
 ```java
 dependencies {
-implementation 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.1.7'
+implementation 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.1.8'
 }
 ```
 
