@@ -17,10 +17,13 @@ public abstract class StatusNavActivity extends AppCompatActivity implements Vie
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusNavUtils.setStatusBarColor(this,getStatusBarColor());
+        StatusNavUtils.setStatusNavBarColor(this,getStatusBarColor(),getNavigationColor());
     }
 
     protected  int getStatusBarColor(){
-        return 0x00000000;
+        return 0xfff2f2f2;
+    }
+    protected  int getNavigationColor(){
+        return 0xff000000;
     }
 }

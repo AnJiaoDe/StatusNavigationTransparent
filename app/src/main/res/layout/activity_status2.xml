@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    style="@style/transparent_statusbar_fit"
     android:orientation="vertical">
 
 
@@ -17,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="StatusBar半透明(setStatusBarColor)"
+            android:text="StatusBar半透明"
             android:textColor="#ffffff" />
     </RelativeLayout>
 

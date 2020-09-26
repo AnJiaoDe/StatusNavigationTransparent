@@ -6,10 +6,6 @@
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-    <com.cy.translucentparent.StatusBarView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#00000000" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="StatusBar全透明(StatusBarView)"
+            android:text="文字、icon颜色根据StatusBar颜色亮度设置为白色"
             android:textColor="#ffffff" />
     </RelativeLayout>
 

@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    style="@style/transparent_statusbar_fit"
     android:orientation="vertical">
 
 
@@ -17,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="StatusBar全透明(StatusBarView)"
+            android:text="文字、icon颜色根据StatusBar颜色亮度设置为黑色"
             android:textColor="#2d1d1d" />
     </RelativeLayout>
 

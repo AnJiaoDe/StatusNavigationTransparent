@@ -16,42 +16,26 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="StatusBar全透明(文字、icon颜色根据StatusBar颜色亮度设置为黑色)" />
+
         <Button
             android:id="@+id/btn_0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="StatusBar全透明(文字、icon颜色根据StatusBar颜色亮度设置为白色)" />
-        <Button
-            android:id="@+id/btn_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="StatusBar半透明(StatusBarView)" />
+
         <Button
             android:id="@+id/btn_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="StatusBar半透明(SetStatusBarColor)" />
-
-
-        <Button
-            android:id="@+id/btn_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="StatusBar全透明(fitsSystemWindows)" />
-
-        <Button
-            android:id="@+id/btn_4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="StatusBar全透明(StatusBarView)" />
-
+            android:text="StatusBar半透明" />
 
         <Button
             android:id="@+id/btn_5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="StatusBar半透明于图片之上(setStatusBarColor)" />
+            android:text="StatusBar半透明于图片之上" />
+
         <Button
             android:id="@+id/btn_6"
             android:layout_width="match_parent"
@@ -62,7 +46,8 @@
             android:id="@+id/btn_7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="NavigationBar半透明(setNavigationBarColor)" />
+            android:text="NavigationBar半透明" />
+
         <Button
             android:id="@+id/btn_8"
             android:layout_width="match_parent"

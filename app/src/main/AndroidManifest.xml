@@ -17,10 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Status1Activity" />
         <activity android:name=".Status2Activity" />
-        <activity android:name=".Status3Activity" />
-        <activity android:name=".Status4Activity" />
         <activity android:name=".Status5Activity" />
         <activity android:name=".Status6Activity" />
         <activity android:name=".Navigation1Activity" />
