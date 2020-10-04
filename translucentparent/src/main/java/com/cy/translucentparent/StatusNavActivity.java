@@ -88,7 +88,7 @@ public abstract class StatusNavActivity extends AppCompatActivity implements Vie
     public void setNavigationBarSystemFill() {
         this.navigationBarSystemFill = true;
         navigationBarView.setVisibility(View.VISIBLE);
-        navigationBarView.setBackgroundColor(0x00000000);
+        navigationBarView.setBackgroundColor(0xff000000);
     }
 
     public void setNavigationBarSystemNoFill() {
