@@ -5,18 +5,17 @@ import android.util.AttributeSet;
 import android.view.View;
 
 
-
 /**
  * Created by lenovo on 2017/7/4.
  */
 
-public class StatusBarView extends View {
+public class NavigationBarView extends View {
     private Context context;
-    public StatusBarView(Context context) {
+    public NavigationBarView(Context context) {
         this(context,null);
     }
 
-    public StatusBarView(Context context, AttributeSet attrs) {
+    public NavigationBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context=context;
 
@@ -24,7 +23,6 @@ public class StatusBarView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
-        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(ScreenUtils.getStatusBarHeight(context), MeasureSpec.EXACTLY));
+        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(ScreenUtils.getNavigationBarHeight(context), MeasureSpec.EXACTLY));
     }
 }

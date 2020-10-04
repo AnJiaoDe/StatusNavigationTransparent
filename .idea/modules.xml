@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/GitHub__-StatusNavigationTransparent.iml" filepath="$PROJECT_DIR$/GitHub__-StatusNavigationTransparent.iml" group="StatusNavigationTransparent" />
       <module fileurl="file://$PROJECT_DIR$/StatusNavigationTransparent.iml" filepath="$PROJECT_DIR$/StatusNavigationTransparent.iml" group="StatusNavigationTransparent" />
+      <module fileurl="file://$PROJECT_DIR$/app/StatusNavigationTransparent-app.iml" filepath="$PROJECT_DIR$/app/StatusNavigationTransparent-app.iml" group="StatusNavigationTransparent/app" />
+      <module fileurl="file://$PROJECT_DIR$/translucentparent/StatusNavigationTransparent-translucentparent.iml" filepath="$PROJECT_DIR$/translucentparent/StatusNavigationTransparent-translucentparent.iml" group="StatusNavigationTransparent/translucentparent" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="StatusNavigationTransparent/app" />
       <module fileurl="file://$PROJECT_DIR$/translucentparent/translucentparent.iml" filepath="$PROJECT_DIR$/translucentparent/translucentparent.iml" group="StatusNavigationTransparent/translucentparent" />
     </modules>

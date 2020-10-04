@@ -11,13 +11,10 @@ public class Navigation2Activity extends StatusNavActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav2);
-
-
-    }
-
-    @Override
-    protected int getNavigationColor() {
-        return 0x00000000;
+        setStatusBarSystemNoFill();
+        setStatusBarColor(0x00000000);
+        setNavigationBarSystemNoFill();
+        setNavigationBarColor(0x00000000);
     }
 
     @Override

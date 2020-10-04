@@ -11,12 +11,10 @@ public class Status6Activity extends StatusNavActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status6);
+        setStatusBarSystemNoFill();
+        setStatusBarColor(0x00000000);
     }
 
-    @Override
-    protected int getStatusBarColor() {
-        return 0x00000000;
-    }
 
     @Override
     public void onClick(View v) {

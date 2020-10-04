@@ -1,14 +1,15 @@
 <resources>
 
-    <style name="ThemeNoActionBar_cy" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:fitsSystemWindows">true</item>
-        <item name="android:clipToPadding">false</item>
-    </style>
-    <style name="statusbar_fit">
-        <item name="android:fitsSystemWindows">true</item>
-        <item name="android:clipToPadding">false</item>
-    </style>
-    <style name="no_statusbar_fit">
-        <item name="android:fitsSystemWindows">false</item>
-    </style>
+<!--    <style name="ThemeNoActionBar_cy" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        <item name="android:fitsSystemWindows">true</item>-->
+<!--        <item name="android:clipToPadding">false</item>-->
+<!--    </style>-->
+<!--    <style name="statusbar_fit">-->
+<!--        <item name="android:fitsSystemWindows">true</item>-->
+<!--        <item name="android:clipToPadding">false</item>-->
+<!--    </style>-->
+<!--    <style name="no_statusbar_fit">-->
+<!--        <item name="android:fitsSystemWindows">false</item>-->
+<!--        <item name="android:clipToPadding">true</item>-->
+<!--    </style>-->
 </resources>

@@ -20,7 +20,12 @@ public class MainActivity extends StatusNavActivity {
         findViewById(R.id.btn_6).setOnClickListener(this);
         findViewById(R.id.btn_7).setOnClickListener(this);
         findViewById(R.id.btn_8).setOnClickListener(this);
-        StatusNavUtils.setStatusBarColor(this,0xfff2f2f2);
+        findViewById(R.id.btn_9).setOnClickListener(this);
+        findViewById(R.id.btn_10).setOnClickListener(this);
+        findViewById(R.id.btn_11).setOnClickListener(this);
+        findViewById(R.id.btn_12).setOnClickListener(this);
+//        StatusNavUtils.setStatusBarColor(this, getResources().getColor(R.color.colorPrimary));
+        setStatusBarColor(getResources().getColor(R.color.theme));
     }
 
     @Override
@@ -42,10 +47,22 @@ public class MainActivity extends StatusNavActivity {
                 startActivity(new Intent(this,Status6Activity.class));
                 break;
             case R.id.btn_7:
-                startActivity(new Intent(this,Navigation1Activity.class));
+                startActivity(new Intent(this,Navigation0Activity.class));
                 break;
             case R.id.btn_8:
+                startActivity(new Intent(this,Navigation1Activity.class));
+                break;
+            case R.id.btn_9:
                 startActivity(new Intent(this,Navigation2Activity.class));
+                break;
+            case R.id.btn_10:
+                startActivity(new Intent(this,HideStatusBarActivity.class));
+                break;
+            case R.id.btn_11:
+                startActivity(new Intent(this,HideNavigationBarActivity.class));
+                break;
+            case R.id.btn_12:
+                startActivity(new Intent(this,FullScreenActivity.class));
                 break;
         }
     }
