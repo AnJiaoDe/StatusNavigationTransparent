@@ -1,27 +1,50 @@
 
 文章目录
+
 GitHub：https://github.com/AnJiaoDe/StatusNavigationTransparent
+
 使用方法
+
 注意：如果轮子死活下载不下来，说明maven地址有毛病，你需要找到jitpack的官网首页，查看最新的官网地址
+
 注意：记得去gayhub查看最新版本，最新版本最niubility
+
 首先创建全局theme继承Theme.AppCompat.Light.NoActionBar
+
 然后继承StatusNavigationActivity
+
 1. 系统StatusBar填充界面,自定义背景颜色(文字、icon颜色根据StatusBar颜色亮度设置为黑色)
+
 2.系统StatusBar填充界面,自定义背景颜色(文字、icon颜色根据StatusBar颜色亮度设置为白色)
+
 3.系统StatusBar不填充界面,布局添加StatusBarView实现半透明
+
 4.系统StatusBar不填充界面,且半透明于图片之上
+
 5.系统StatusBar不填充界面,且全透明于图片之上
+
 6.系统navigationbar填充界面,自定义颜色
+
 7.系统navigationbar不填充界面,且全透明
+
 8.隐藏statusbar
+
 9.隐藏navigationbar
+
 10.隐藏statusbar、navigationbar，全屏
+
 11.图片预览，切换statusbar、navigationbar的显示
+
 StatusNavigationUtils工具类
+
 StatusNavigationActivity
+
 StatusBarView和系统StatusBar高度一致
+
 NavigationBarView系统NavigationBarView高度一致
+
 ScreenUtils
+
 欢迎联系、指正、批评
 
 ## [GitHub：https://github.com/AnJiaoDe/StatusNavigationTransparent](https://github.com/AnJiaoDe/StatusNavigationTransparent)
