@@ -29,8 +29,8 @@ public class StatusNavigationSwitchActivity extends StatusNavigationActivity {
                     rl1.setVisibility(View.VISIBLE);
                     rl2.setVisibility(View.VISIBLE);
                     setClearHideStatusBar();
-                    setStatusBarColor(0xfff2f2f2);
-                    setNavigationBarColor(0xff000000);
+                    setStatusBarColor(getStatusBarColorDefault());
+                    setNavigationBarColor(getNavigationBarColorDefault());
                 }
             }
         });

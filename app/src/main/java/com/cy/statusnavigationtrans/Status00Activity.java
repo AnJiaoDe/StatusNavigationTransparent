@@ -12,7 +12,7 @@ public class Status00Activity extends StatusNavigationActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status00);
         //此行可不写，默认就是0xfff2f2f2
-        setStatusBarColor(0xfff2f2f2);
+        setStatusBarColor(getStatusBarColorDefault());
     }
 
     @Override

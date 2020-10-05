@@ -12,7 +12,6 @@ public class HideNavigationBarActivity extends StatusNavigationActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hide_navigation_bar);
         setHideNavigationBar();
-//        setStatusBarColor(0x00000000);
     }
 
     @Override
