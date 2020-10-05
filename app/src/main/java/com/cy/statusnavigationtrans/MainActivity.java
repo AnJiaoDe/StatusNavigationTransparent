@@ -23,6 +23,7 @@ public class MainActivity extends StatusNavigationActivity {
         findViewById(R.id.btn_10).setOnClickListener(this);
         findViewById(R.id.btn_11).setOnClickListener(this);
         findViewById(R.id.btn_12).setOnClickListener(this);
+        findViewById(R.id.btn_13).setOnClickListener(this);
 //        StatusNavigationUtils.setStatusBarColor(this, getResources().getColor(R.color.colorPrimary));
         setStatusBarColor(getResources().getColor(R.color.theme));
     }
@@ -62,6 +63,9 @@ public class MainActivity extends StatusNavigationActivity {
                 break;
             case R.id.btn_12:
                 startActivity(new Intent(this,FullScreenActivity.class));
+                break;
+            case R.id.btn_13:
+                startActivity(new Intent(this,StatusNavigationSwitchActivity.class));
                 break;
         }
     }

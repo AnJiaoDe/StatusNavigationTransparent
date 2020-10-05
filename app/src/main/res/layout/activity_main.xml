@@ -71,6 +71,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="隐藏statusbar、navigationbar，全屏" />
+        <Button
+            android:id="@+id/btn_13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="图片预览，改变statusbar、navigationbar" />
 
     </LinearLayout>
 

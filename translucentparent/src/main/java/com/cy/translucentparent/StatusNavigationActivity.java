@@ -32,13 +32,22 @@ public abstract class StatusNavigationActivity extends AppCompatActivity impleme
     public void setFullScreen() {
         StatusNavigationUtils.setFullScreen(this);
     }
+    public void setClearFullScreen() {
+        StatusNavigationUtils.setClearFullScreen(this);
+    }
 
     public void setHideStatusBar() {
         StatusNavigationUtils.setHideStatusBar(this);
     }
+    public void setClearHideStatusBar() {
+        StatusNavigationUtils.setClearHideStatusBar(this);
+    }
 
     public void setHideNavigationBar() {
         StatusNavigationUtils.setHideNavigationBar(this);
+    }
+    public void setClearHideNavigationBar() {
+        StatusNavigationUtils.setClearHideNavigationBar(this);
     }
 
     public void setStatusBarNoFill() {

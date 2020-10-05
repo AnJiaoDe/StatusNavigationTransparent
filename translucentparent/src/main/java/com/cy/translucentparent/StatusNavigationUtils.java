@@ -24,6 +24,7 @@ public class StatusNavigationUtils {
      */
     public static void setStatusBarColor(Activity activity, int color) {
         Window window = activity.getWindow();
+        //去除statusbar不填充的标志
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         int ui = window.getDecorView().getSystemUiVisibility();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -80,6 +81,8 @@ public class StatusNavigationUtils {
     public static void setNavigationBarColor(Activity activity, int color) {
         Window window = activity.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        int ui = window.getDecorView().getSystemUiVisibility();
+        window.getDecorView().setSystemUiVisibility(ui);
         window.setNavigationBarColor(color);
     }
 
@@ -97,6 +100,20 @@ public class StatusNavigationUtils {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(ui);
     }
+    /**
+     * 去除隐藏状态栏、导航栏，全屏的标志
+     * @param activity
+     */
+    public static void setClearFullScreen(Activity activity) {
+        View decorView = activity.getWindow().getDecorView();
+        int ui = decorView.getSystemUiVisibility();
+        ui &=  View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                & View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                & View.SYSTEM_UI_FLAG_FULLSCREEN
+                & View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(ui);
+    }
 
     /**
      * 隐藏状态栏
@@ -110,6 +127,18 @@ public class StatusNavigationUtils {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(ui);
     }
+    /**
+     * 去除隐藏状态栏的标志
+     * @param activity
+     */
+    public static void setClearHideStatusBar(Activity activity) {
+        View decorView = activity.getWindow().getDecorView();
+        int ui = decorView.getSystemUiVisibility();
+        ui &= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                & View.SYSTEM_UI_FLAG_FULLSCREEN
+                & View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(ui);
+    }
 
     /**
      * 隐藏导航栏
@@ -119,6 +148,16 @@ public class StatusNavigationUtils {
         View decorView = activity.getWindow().getDecorView();
         int ui = decorView.getSystemUiVisibility();
         ui |=View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(ui);
+    }
+    /**
+     * 去除隐藏导航栏的标志
+     * @param activity
+     */
+    public static void setClearHideNavigationBar(Activity activity) {
+        View decorView = activity.getWindow().getDecorView();
+        int ui = decorView.getSystemUiVisibility();
+        ui &=View.SYSTEM_UI_FLAG_HIDE_NAVIGATION & View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(ui);
     }
 }
