@@ -17,10 +17,15 @@ public abstract class StatusNavigationActivity extends AppCompatActivity impleme
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusNavigationUtils.setStatusBarColor(this, 0xfff2f2f2);
-        StatusNavigationUtils.setNavigationBarColor(this, 0xff000000);
+        StatusNavigationUtils.setStatusBarColor(this, getStatusBarColorDefault());
+        StatusNavigationUtils.setNavigationBarColor(this, getNavigationBarColorDefault());
     }
-
+    public int getStatusBarColorDefault(){
+        return 0xfff2f2f2;
+    }
+    public int getNavigationBarColorDefault(){
+        return 0xff000000;
+    }
 
     public void setStatusBarColor(int color) {
         StatusNavigationUtils.setStatusBarColor(this, color);
