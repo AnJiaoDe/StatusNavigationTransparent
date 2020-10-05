@@ -1,21 +1,17 @@
 package com.cy.statusnavigationtrans;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 
-import com.cy.translucentparent.StatusNavActivity;
+import com.cy.translucentparent.StatusNavigationActivity;
 
-public class HideStatusBarActivity extends StatusNavActivity {
+public class HideStatusBarActivity extends StatusNavigationActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hide_status_bar);
         setHideStatusBar();
-        setNavigationBarSystemNoFill();
-        setNavigationBarColor(0x11000000);
     }
 
     @Override

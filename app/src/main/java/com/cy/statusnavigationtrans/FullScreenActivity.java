@@ -1,17 +1,11 @@
 package com.cy.statusnavigationtrans;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
-import com.cy.translucentparent.StatusNavActivity;
-import com.cy.translucentparent.StatusNavUtils;
+import com.cy.translucentparent.StatusNavigationActivity;
 
-public class FullScreenActivity extends StatusNavActivity {
+public class FullScreenActivity extends StatusNavigationActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

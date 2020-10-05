@@ -1,14 +1,11 @@
 package com.cy.statusnavigationtrans;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 
-import com.cy.translucentparent.StatusNavActivity;
-import com.cy.translucentparent.StatusNavUtils;
+import com.cy.translucentparent.StatusNavigationActivity;
 
-public class Status00Activity extends StatusNavActivity {
+public class Status00Activity extends StatusNavigationActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

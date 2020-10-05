@@ -4,10 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.cy.translucentparent.StatusNavActivity;
-import com.cy.translucentparent.StatusNavUtils;
+import com.cy.translucentparent.StatusNavigationActivity;
 
-public class MainActivity extends StatusNavActivity {
+public class MainActivity extends StatusNavigationActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +18,12 @@ public class MainActivity extends StatusNavActivity {
         findViewById(R.id.btn_5).setOnClickListener(this);
         findViewById(R.id.btn_6).setOnClickListener(this);
         findViewById(R.id.btn_7).setOnClickListener(this);
-        findViewById(R.id.btn_8).setOnClickListener(this);
+//        findViewById(R.id.btn_8).setOnClickListener(this);
         findViewById(R.id.btn_9).setOnClickListener(this);
         findViewById(R.id.btn_10).setOnClickListener(this);
         findViewById(R.id.btn_11).setOnClickListener(this);
         findViewById(R.id.btn_12).setOnClickListener(this);
-//        StatusNavUtils.setStatusBarColor(this, getResources().getColor(R.color.colorPrimary));
+//        StatusNavigationUtils.setStatusBarColor(this, getResources().getColor(R.color.colorPrimary));
         setStatusBarColor(getResources().getColor(R.color.theme));
     }
 
@@ -49,9 +48,9 @@ public class MainActivity extends StatusNavActivity {
             case R.id.btn_7:
                 startActivity(new Intent(this,Navigation0Activity.class));
                 break;
-            case R.id.btn_8:
-                startActivity(new Intent(this,Navigation1Activity.class));
-                break;
+//            case R.id.btn_8:
+//                startActivity(new Intent(this,Navigation1Activity.class));
+//                break;
             case R.id.btn_9:
                 startActivity(new Intent(this,Navigation2Activity.class));
                 break;

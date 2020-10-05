@@ -3,16 +3,17 @@ package com.cy.statusnavigationtrans;
 import android.os.Bundle;
 import android.view.View;
 
-import com.cy.translucentparent.StatusNavActivity;
+import androidx.core.view.ViewCompat;
 
-public class Status2Activity extends StatusNavActivity {
+import com.cy.translucentparent.StatusNavigationActivity;
+
+public class Status2Activity extends StatusNavigationActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status2);
-        setStatusBarSystemNoFill();
-        setStatusBarColor(0x33000000);
+        setStatusBarNoFillAndTransParentHalf();
     }
 
 

@@ -45,11 +45,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="系统navigationbar填充界面,自定义颜色" />
-        <Button
-            android:id="@+id/btn_8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="系统navigationbar不填充界面,且半透明" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_8"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="系统navigationbar不填充界面,且半透明" />-->
 
         <Button
             android:id="@+id/btn_9"
