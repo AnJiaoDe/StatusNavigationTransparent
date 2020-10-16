@@ -24,7 +24,7 @@ public abstract class StatusNavigationActivity extends AppCompatActivity impleme
         return 0xfff2f2f2;
     }
     public int getNavigationBarColorDefault(){
-        return 0xff000000;
+        return 0xDD000000;
     }
 
     public void setStatusBarColor(int color) {
