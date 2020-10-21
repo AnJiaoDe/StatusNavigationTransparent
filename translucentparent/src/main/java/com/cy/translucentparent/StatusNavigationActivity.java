@@ -12,13 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
  * Created by lenovo on 2017/4/25.
  */
 
-public abstract class StatusNavigationActivity extends AppCompatActivity implements View.OnClickListener {
+public abstract class StatusNavigationActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusNavigationUtils.setStatusBarColor(this, getStatusBarColorDefault());
-        StatusNavigationUtils.setNavigationBarColor(this, getNavigationBarColorDefault());
+        StatusNavigationUtils.getInstance().setStatusBarColor(this, getStatusBarColorDefault());
+        StatusNavigationUtils.getInstance().setNavigationBarColor(this, getNavigationBarColorDefault());
     }
     public int getStatusBarColorDefault(){
         return 0xfff2f2f2;
@@ -28,35 +28,35 @@ public abstract class StatusNavigationActivity extends AppCompatActivity impleme
     }
 
     public void setStatusBarColor(int color) {
-        StatusNavigationUtils.setStatusBarColor(this, color);
+        StatusNavigationUtils.getInstance().setStatusBarColor(this, color);
     }
     public void setNavigationBarColor(int color) {
-        StatusNavigationUtils.setNavigationBarColor(this, color);
+        StatusNavigationUtils.getInstance().setNavigationBarColor(this, color);
     }
 
     public void setFullScreen() {
-        StatusNavigationUtils.setFullScreen(this);
+        StatusNavigationUtils.getInstance().setFullScreen(this);
     }
     public void setClearFullScreen() {
-        StatusNavigationUtils.setClearFullScreen(this);
+        StatusNavigationUtils.getInstance().setClearFullScreen(this);
     }
 
     public void setHideStatusBar() {
-        StatusNavigationUtils.setHideStatusBar(this);
+        StatusNavigationUtils.getInstance().setHideStatusBar(this);
     }
     public void setClearHideStatusBar() {
-        StatusNavigationUtils.setClearHideStatusBar(this);
+        StatusNavigationUtils.getInstance().setClearHideStatusBar(this);
     }
 
     public void setHideNavigationBar() {
-        StatusNavigationUtils.setHideNavigationBar(this);
+        StatusNavigationUtils.getInstance().setHideNavigationBar(this);
     }
     public void setClearHideNavigationBar() {
-        StatusNavigationUtils.setClearHideNavigationBar(this);
+        StatusNavigationUtils.getInstance().setClearHideNavigationBar(this);
     }
 
     public void setStatusBarNoFill() {
-        StatusNavigationUtils.setStatusBarNoFill(this);
+        StatusNavigationUtils.getInstance().setStatusBarNoFill(this);
     }
 
     public void setStatusBarNoFillAndTransParent() {
@@ -70,6 +70,6 @@ public abstract class StatusNavigationActivity extends AppCompatActivity impleme
     }
 
     public  void setNavigationBarTransparent() {
-        StatusNavigationUtils.setNavigationBarTransparent(this);
+        StatusNavigationUtils.getInstance().setNavigationBarTransparent(this);
     }
 }

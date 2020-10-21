@@ -14,9 +14,4 @@ public class Status0Activity extends StatusNavigationActivity {
         setStatusBarColor(getResources().getColor(R.color.theme));
     }
 
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }

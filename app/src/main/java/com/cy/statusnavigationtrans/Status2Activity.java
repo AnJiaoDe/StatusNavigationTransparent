@@ -16,9 +16,4 @@ public class Status2Activity extends StatusNavigationActivity {
         setStatusBarNoFillAndTransParentHalf();
     }
 
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }

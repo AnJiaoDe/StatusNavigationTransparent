@@ -35,9 +35,4 @@ public class StatusNavigationSwitchActivity extends StatusNavigationActivity {
             }
         });
     }
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }

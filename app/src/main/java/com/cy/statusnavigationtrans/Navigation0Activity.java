@@ -13,9 +13,4 @@ public class Navigation0Activity extends StatusNavigationActivity {
         setContentView(R.layout.activity_navigation0);
         setNavigationBarColor(0xffff0000);
     }
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }

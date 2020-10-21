@@ -13,9 +13,4 @@ public class HideNavigationBarActivity extends StatusNavigationActivity {
         setContentView(R.layout.activity_hide_navigation_bar);
         setHideNavigationBar();
     }
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }
