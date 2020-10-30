@@ -21,10 +21,10 @@ public abstract class StatusNavigationActivity extends AppCompatActivity  {
         StatusNavigationUtils.getInstance().setNavigationBarColor(this, getNavigationBarColorDefault());
     }
     public int getStatusBarColorDefault(){
-        return 0xfff2f2f2;
+        return 0xffffffff;
     }
     public int getNavigationBarColorDefault(){
-        return 0xDD000000;
+        return 0xdd000000;
     }
 
     public void setStatusBarColor(int color) {
