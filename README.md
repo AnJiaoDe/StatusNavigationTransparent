@@ -1,5 +1,4 @@
 
-
 文章目录
 
 GitHub：https://github.com/AnJiaoDe/StatusNavigationTransparent
@@ -10,10 +9,41 @@ GitHub：https://github.com/AnJiaoDe/StatusNavigationTransparent
 
 注意：记得去gayhub查看最新版本，最新版本最niubility
 
-1. StatusBar半透明
-2. StatusBar全透明
-3. StatusBar透明于图片之上
-3. NavigationBar透明
+首先创建全局theme继承Theme.AppCompat.Light.NoActionBar
+
+然后继承StatusNavigationActivity
+
+1. 系统StatusBar填充界面,自定义背景颜色(文字、icon颜色根据StatusBar颜色亮度设置为黑色)
+
+2.系统StatusBar填充界面,自定义背景颜色(文字、icon颜色根据StatusBar颜色亮度设置为白色)
+
+3.系统StatusBar不填充界面,布局添加StatusBarView实现半透明
+
+4.系统StatusBar不填充界面,且半透明于图片之上
+
+5.系统StatusBar不填充界面,且全透明于图片之上
+
+6.系统navigationbar填充界面,自定义颜色
+
+7.系统navigationbar不填充界面,且全透明
+
+8.隐藏statusbar
+
+9.隐藏navigationbar
+
+10.隐藏statusbar、navigationbar，全屏
+
+11.图片预览，切换statusbar、navigationbar的显示
+
+StatusNavigationUtils工具类
+
+StatusNavigationActivity
+
+StatusBarView和系统StatusBar高度一致
+
+NavigationBarView系统NavigationBarView高度一致
+
+ScreenUtils
 
 欢迎联系、指正、批评
 
@@ -36,39 +66,20 @@ allprojects {
 
 ```java
 dependencies {
-implementation 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.1.8'
+implementation 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.2.4'
 }
 ```
 
 
-![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LTQ1NzUxNTIxMGEyZGEyZGI?x-oss-process=image/format,png)
- 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201006004830409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NvbmZ1c2luZ19hd2FrZW5pbmc=,size_16,color_FFFFFF,t_70)
 
- 
-**本文只描述在activity中如何使用，fragment中使用方法类似，可以实现**
- 
- **首先创建全局theme**
+
+## 首先创建全局theme继承Theme.AppCompat.Light.NoActionBar
+
  
 ```xml
-<resources>
-
-    <!--&lt;!&ndash; Base application theme. &ndash;&gt;-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
-        <!--此处可自行根据项目需要设置,和状态栏导航栏透明无关-->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/theme</item>
-        <item name="android:windowBackground">@color/white</item>
-        <item name="android:windowSoftInputMode">stateAlwaysHidden</item>
-        <item name="android:textColor">@color/text_deep</item>
-        <item name="android:textSize">@dimen/size_3</item>
-        <item name="android:scaleType">centerInside</item>
-        <item name="android:launchMode">singleTop</item>
     </style>
-
-</resources>
-
 ```
 
 ```xml
@@ -80,118 +91,68 @@ implementation 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.1.8'
         android:theme="@style/AppTheme">
 ```
  
- **然后创建BaseActivity实现StatusBar全透明**
+
+## 然后继承StatusNavigationActivity
+ 注意：不一定非要继承StatusNavActivity ,可以使用StatusNavigationUtils工具类、StatusBarView和NavigationBarView
+
+
+总之，方法多样灵活
+## 1. 系统StatusBar填充界面,自定义背景颜色(文字、icon颜色根据StatusBar颜色亮度设置为黑色)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2020100600534638.png)
+
 
 ```java
-public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+public class Status00Activity extends StatusNavigationActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        StatusNavUtils.setStatusBarColor(this,0x00000000);
-    }
-    public void startAppcompatActivity(Class<?> cls) {
-        startActivity(new Intent(this, cls));
+        setContentView(R.layout.activity_status00);
+        //此行可不写，默认就是0xfff2f2f2
+        setStatusBarColor(getStatusBarColorDefault());
     }
 
+    @Override
+    public void onClick(View v) {
 
+    }
 }
-
 ```
+       
 
-## 1. StatusBar半透明
-
-
-
-**1.1 StatusBar半透明用StatusBarView实现(4.4以上有效)**
-
-
-![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LTlhNjQ2N2Q4ZTNlZTNiMzI?x-oss-process=image/format,png)
-
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical">
-
-    <com.cy.translucentparent.StatusBarView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#33000000" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/colorPrimary">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="StatusBar半透明(statusBarView)"
-            android:textColor="#ffffff" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"></LinearLayout>
-</LinearLayout>
-
-```
-
-
-**1.2 StatusBar半透明用setStatusBarColor实现(5.0以上有效)**
-
-![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LWU1MjQ2ZWQ2YjBiMmNkZjQ?x-oss-process=image/format,png)
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    style="@style/transparent_statusbar_fit"
-    android:orientation="vertical">
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/colorPrimary">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="StatusBar半透明(setStatusBarColor)"
-            android:textColor="#ffffff" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"></LinearLayout>
-</LinearLayout>
-
-```
+## 2.系统StatusBar填充界面,自定义背景颜色(文字、icon颜色根据StatusBar颜色亮度设置为白色)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201006005516961.png)
 
 ```java
-public class Status2Activity extends BaseActivity {
+public class Status0Activity extends StatusNavigationActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_status0);
+        setStatusBarColor(getResources().getColor(R.color.theme));
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+    }
+}
+```
+
+## 3.系统StatusBar不填充界面,布局添加StatusBarView实现半透明
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201006005718949.png)
+
+```java
+public class Status2Activity extends StatusNavigationActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status2);
-        StatusNavUtils.setStatusBarColor(this,0x33000000);
+        setStatusBarNoFillAndTransParentHalf();
     }
 
 
@@ -200,53 +161,7 @@ public class Status2Activity extends BaseActivity {
 
     }
 }
-
 ```
-
-## 2. StatusBar全透明
-
-
-**2.1 StatusBar全透明用fitSystemWindows实现(4.4以上有效)**
-
-![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LTM3NWZlNGE1Y2QyNjNkZWI?x-oss-process=image/format,png)
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    style="@style/transparent_statusbar_fit"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical">
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/colorPrimary">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="StatusBar全透明(fitsystemwindows)"
-            android:textColor="#ffffff" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"></LinearLayout>
-</LinearLayout>
-
-```
-
-
-**2.2 StatusBar全透明用StatusBarView实现(4.4以上有效)**
-
-![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LTVkZmUwMWY0OWQ1OTFiOTc?x-oss-process=image/format,png)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -256,12 +171,9 @@ public class Status2Activity extends BaseActivity {
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
-
     <com.cy.translucentparent.StatusBarView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#00000000" />
-
+        android:layout_height="wrap_content"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -271,7 +183,7 @@ public class Status2Activity extends BaseActivity {
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="StatusBar全透明(StatusBarView)"
+            android:text="StatusBar半透明"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -284,61 +196,20 @@ public class Status2Activity extends BaseActivity {
 
 ```
 
-
-## 3. StatusBar透明于图片之上
-
-
-
-**3.1 StatusBar半透明于图片之上用setStatusBarColor实现(5.0以上有效)**
-
-![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LTYwMDM3OWIyYTk2YTgwYTU?x-oss-process=image/format,png)
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/huge" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/colorPrimary">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="StatusBar半透明于图片之上(setStatusBarColor)"
-            android:textColor="#ffffff" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"></LinearLayout>
-</LinearLayout>
-
-```
+## 4.系统StatusBar不填充界面,且半透明于图片之上
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201006005825571.png)
 
 ```java
-public class Status5Activity extends BaseActivity {
+public class Status5Activity extends StatusNavigationActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status5);
-
-        StatusNavUtils.setStatusBarColor(this,0x33000000);
+        setStatusBarNoFillAndTransParentHalf();
+        //或者写2行
+//        setStatusBarNoFill();
+//        setStatusBarColor(0x33000000);
     }
 
     @Override
@@ -346,131 +217,160 @@ public class Status5Activity extends BaseActivity {
 
     }
 }
-
 ```
 
-**3.2 StatusBar全透明于图片之上(4.4以上有效)**
-
-
-![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LWEzZjU0ZTM3NTYxYzU5YWI?x-oss-process=image/format,png)
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/huge" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/colorPrimary">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="StatusBar全透明于图片之上"
-            android:textColor="#ffffff" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"></LinearLayout>
-</LinearLayout>
-
-```
-
-
-## 3. NavigationBar透明
-
-
-
-**3.1 NavigationBar半透明用setNavigationBarColor实现(5.0以上有效)**
-
-![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LWM1YWQ2MzdhYWYxNGI4NTk?x-oss-process=image/format,png)
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/activity_status7"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@color/colorPrimary">
-
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:text="navigationBar半透明(setNavigationBarColor)"
-    android:textColor="@color/white" />
-</RelativeLayout>
-
-```
+## 5.系统StatusBar不填充界面,且全透明于图片之上
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201006005912922.png)
 
 ```java
-public class Navigation1Activity extends BaseActivity {
+public class Status6Activity extends StatusNavigationActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_status7);
-
-        StatusNavUtils.setNavigationBarColor(this,0x33000000);
+        setContentView(R.layout.activity_status6);
+        setStatusBarNoFillAndTransParent();
     }
+
 
     @Override
     public void onClick(View v) {
 
     }
 }
-
 ```
 
-**3.2 NavigationBar全透明(4.4以上有效)**
-
-![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzExODY2MDc4LWFkNjNhNjYwNTM2MTM0NzM?x-oss-process=image/format,png)
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_status7"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:text="navigationBar全透明"
-        android:textColor="@color/white" />
-</RelativeLayout>
-
-```
+## 6.系统navigationbar填充界面,自定义颜色
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201006010032268.png)
 
 ```java
-public class Navigation2Activity extends BaseActivity {
+public class Navigation0Activity extends StatusNavigationActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation2);
+        setContentView(R.layout.activity_navigation0);
+        setNavigationBarColor(0xffff0000);
+    }
 
-        StatusNavUtils.setNavigationBarColor(this,0x00000000);
+    @Override
+    public void onClick(View v) {
 
+    }
+}
+```
+
+## 7.系统navigationbar不填充界面,且全透明
+模拟器上看起来是半透明，有些手机会有阴影，不必强求，随缘即可
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201006010143951.png)
+
+```java
+public class Navigation2Activity extends StatusNavigationActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_nav2);
+        setNavigationBarTransparent();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+}
+```
+
+## 8.隐藏statusbar
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201006010602644.gif)
+
+```java
+public class HideStatusBarActivity extends StatusNavigationActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_hide_status_bar);
+        setHideStatusBar();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+}
+```
+
+## 9.隐藏navigationbar
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201006010812251.gif)
+
+```java
+public class HideNavigationBarActivity extends StatusNavigationActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_hide_navigation_bar);
+        setHideNavigationBar();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+}
+```
+
+## 10.隐藏statusbar、navigationbar，全屏
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201006010930427.gif)
+
+```java
+public class FullScreenActivity extends StatusNavigationActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_full_screen);
+        setFullScreen();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+}
+```
+
+## 11.图片预览，切换statusbar、navigationbar的显示
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201006011103788.gif)
+
+```java
+public class StatusNavigationSwitchActivity extends StatusNavigationActivity {
+    private boolean fullScreen=false;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_status_navigation_switch);
+        final ViewGroup rl1=findViewById(R.id.rl1);
+        final ViewGroup rl2=findViewById(R.id.rl2);
+        findViewById(R.id.iv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fullScreen=!fullScreen;
+                if(fullScreen){
+                    rl1.setVisibility(View.GONE);
+                    rl2.setVisibility(View.GONE);
+                    setHideStatusBar();
+                    setNavigationBarTransparent();
+                }else {
+                    rl1.setVisibility(View.VISIBLE);
+                    rl2.setVisibility(View.VISIBLE);
+                    setClearHideStatusBar();
+                    setStatusBarColor(getStatusBarColorDefault());
+                    setNavigationBarColor(getNavigationBarColorDefault());
+                }
+            }
+        });
     }
 
     @Override
@@ -480,106 +380,273 @@ public class Navigation2Activity extends BaseActivity {
 }
 
 ```
- 
- 
+小编提供了贼多工具方便你的使用
 
+## StatusNavigationUtils工具类
 
- **源码：**
-**transparent_statusbar_fit**
-```
-    <style name="transparent_statusbar_fit">
-        <item name="android:fitsSystemWindows">true</item>
-        <item name="android:clipToPadding">false</item>
-    </style>
-```
-
-**StatusNavUtils**
 ```java
-public class StatusNavUtils {
+package com.cy.translucentparent;
+
+import android.app.Activity;
+import android.graphics.Color;
+import android.os.Build;
+import android.os.ParcelUuid;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+
+
+/**
+ * Created by lenovo on 2017/4/25.
+ */
+
+public class StatusNavigationUtils {
 
 
     /**
-     * 状态栏透明去阴影（5.0以上）
+     * 状态栏自定义背景颜色,6.0以上可修改状态栏字体颜色，icon颜色
      *
      * @param activity
      * @param color
      */
     public static void setStatusBarColor(Activity activity, int color) {
         Window window = activity.getWindow();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(color);
-            return;
+        //去除statusbar不填充的标志
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        int ui = window.getDecorView().getSystemUiVisibility();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (isLightColor(color)) {
+                ui |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; //设置状态栏中字体的颜色为黑色
+            } else {
+                ui &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; //设置状态栏中字体颜色为白色
+            }
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-        }
-
+        window.getDecorView().setSystemUiVisibility(ui);
+        window.setStatusBarColor(color);
     }
 
     /**
-     * 导航栏全透明去阴影（5.0以上）
+     * 判断颜色是否为亮色
+     * @param color
+     * @return
+     */
+    public static boolean isLightColor(int color) {
+        double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
+        if (darkness < 0.5) {
+            return true; // It's a light color
+        } else {
+            return false; // It's a dark color
+        }
+    }
+
+    /**
+     * * 状态栏不填充，布局会填充到状态栏底部，有些手机有阴影
      *
+     * @param activity
+     */
+    public static void setStatusBarNoFill(Activity activity) {
+        Window window = activity.getWindow();
+        int ui = window.getDecorView().getSystemUiVisibility();
+        ui |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+        window.getDecorView().setSystemUiVisibility(ui);
+    }
+
+    /**
+     * * 导航栏全透明，布局会填充到导航栏底部，有些手机有阴影
+     *
+     * @param activity
+     */
+    public static void setNavigationBarTransparent(Activity activity) {
+        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+    }
+
+    /**设置导航栏颜色，和setNavigationBarTransparent互斥，要么选择自定义导航栏颜色，要么选择导航栏全透明
      * @param activity
      * @param color
      */
 
     public static void setNavigationBarColor(Activity activity, int color) {
         Window window = activity.getWindow();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setNavigationBarColor(color);
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-
-        }
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        int ui = window.getDecorView().getSystemUiVisibility();
+        window.getDecorView().setSystemUiVisibility(ui);
+        window.setNavigationBarColor(color);
     }
 
     /**
-     * 状态栏、导航栏全透明去阴影（5.0以上）
-     *
+     * 隐藏状态栏、导航栏，全屏
      * @param activity
-     * @param color_status
-     * @param color_nav
      */
-    public static void setStatusNavBarColor(Activity activity, int color_status, int color_nav) {
-        Window window = activity.getWindow();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
-            window.setStatusBarColor(color_status);
-
-            window.setNavigationBarColor(color_nav);
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-
-        }
+    public static void setFullScreen(Activity activity) {
+        View decorView = activity.getWindow().getDecorView();
+        int ui = decorView.getSystemUiVisibility();
+        ui |=  View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(ui);
+    }
+    /**
+     * 去除隐藏状态栏、导航栏，全屏的标志
+     * @param activity
+     */
+    public static void setClearFullScreen(Activity activity) {
+        View decorView = activity.getWindow().getDecorView();
+        int ui = decorView.getSystemUiVisibility();
+        ui &=  View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                & View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                & View.SYSTEM_UI_FLAG_FULLSCREEN
+                & View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(ui);
     }
 
+    /**
+     * 隐藏状态栏
+     * @param activity
+     */
+    public static void setHideStatusBar(Activity activity) {
+        View decorView = activity.getWindow().getDecorView();
+        int ui = decorView.getSystemUiVisibility();
+        ui |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(ui);
+    }
+    /**
+     * 去除隐藏状态栏的标志
+     * @param activity
+     */
+    public static void setClearHideStatusBar(Activity activity) {
+        View decorView = activity.getWindow().getDecorView();
+        int ui = decorView.getSystemUiVisibility();
+        ui &= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                & View.SYSTEM_UI_FLAG_FULLSCREEN
+                & View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(ui);
+    }
 
+    /**
+     * 隐藏导航栏
+     * @param activity
+     */
+    public static void setHideNavigationBar(Activity activity) {
+        View decorView = activity.getWindow().getDecorView();
+        int ui = decorView.getSystemUiVisibility();
+        ui |=View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(ui);
+    }
+    /**
+     * 去除隐藏导航栏的标志
+     * @param activity
+     */
+    public static void setClearHideNavigationBar(Activity activity) {
+        View decorView = activity.getWindow().getDecorView();
+        int ui = decorView.getSystemUiVisibility();
+        ui &=View.SYSTEM_UI_FLAG_HIDE_NAVIGATION & View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(ui);
+    }
 }
 
 ```
 
-**StatusBarView**
+## StatusNavigationActivity
 
 ```java
+package com.cy.translucentparent;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+
+/**
+ * Created by lenovo on 2017/4/25.
+ */
+
+public abstract class StatusNavigationActivity extends AppCompatActivity implements View.OnClickListener {
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        StatusNavigationUtils.setStatusBarColor(this, getStatusBarColorDefault());
+        StatusNavigationUtils.setNavigationBarColor(this, getNavigationBarColorDefault());
+    }
+    public int getStatusBarColorDefault(){
+        return 0xfff2f2f2;
+    }
+    public int getNavigationBarColorDefault(){
+        return 0xff000000;
+    }
+
+    public void setStatusBarColor(int color) {
+        StatusNavigationUtils.setStatusBarColor(this, color);
+    }
+    public void setNavigationBarColor(int color) {
+        StatusNavigationUtils.setNavigationBarColor(this, color);
+    }
+
+    public void setFullScreen() {
+        StatusNavigationUtils.setFullScreen(this);
+    }
+    public void setClearFullScreen() {
+        StatusNavigationUtils.setClearFullScreen(this);
+    }
+
+    public void setHideStatusBar() {
+        StatusNavigationUtils.setHideStatusBar(this);
+    }
+    public void setClearHideStatusBar() {
+        StatusNavigationUtils.setClearHideStatusBar(this);
+    }
+
+    public void setHideNavigationBar() {
+        StatusNavigationUtils.setHideNavigationBar(this);
+    }
+    public void setClearHideNavigationBar() {
+        StatusNavigationUtils.setClearHideNavigationBar(this);
+    }
+
+    public void setStatusBarNoFill() {
+        StatusNavigationUtils.setStatusBarNoFill(this);
+    }
+
+    public void setStatusBarNoFillAndTransParent() {
+        setStatusBarNoFill();
+        setStatusBarColor(0x00000000);
+    }
+
+    public void setStatusBarNoFillAndTransParentHalf() {
+        setStatusBarNoFill();
+        setStatusBarColor(0x33000000);
+    }
+
+    public  void setNavigationBarTransparent() {
+        StatusNavigationUtils.setNavigationBarTransparent(this);
+    }
+}
+
+```
+
+## StatusBarView和系统StatusBar高度一致
+
+```java
+package com.cy.translucentparent;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.View;
+
+
+
+/**
+ * Created by lenovo on 2017/7/4.
+ */
+
 public class StatusBarView extends View {
     private Context context;
     public StatusBarView(Context context) {
@@ -601,9 +668,62 @@ public class StatusBarView extends View {
 
 ```
 
-**ScreenUtils**
+## NavigationBarView系统NavigationBarView高度一致
 
 ```java
+package com.cy.translucentparent;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.View;
+
+
+/**
+ * Created by lenovo on 2017/7/4.
+ */
+
+public class NavigationBarView extends View {
+    private Context context;
+    public NavigationBarView(Context context) {
+        this(context,null);
+    }
+
+    public NavigationBarView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.context=context;
+
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(ScreenUtils.getNavigationBarHeight(context), MeasureSpec.EXACTLY));
+    }
+}
+
+```
+
+## ScreenUtils
+
+```java
+package com.cy.translucentparent;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.os.Build;
+import android.util.DisplayMetrics;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.WindowManager;
+
+import java.lang.reflect.Method;
+
+/**
+ * Created by Administrator on 2018/11/20 0020.
+ */
+
 public class ScreenUtils {
 
     public static int getStatusBarHeight(Context context) {
@@ -688,12 +808,9 @@ public class ScreenUtils {
         return r.right - r.left;
     }
 }
+
+
 ```
- 
- 
-
-
-
 
 ## 欢迎联系、指正、批评
 

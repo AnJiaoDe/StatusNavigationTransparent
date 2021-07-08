@@ -13,9 +13,4 @@ public class FullScreenActivity extends StatusNavigationActivity {
         setContentView(R.layout.activity_full_screen);
         setFullScreen();
     }
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }

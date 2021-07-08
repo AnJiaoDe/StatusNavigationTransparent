@@ -17,8 +17,4 @@ public class Navigation2Activity extends StatusNavigationActivity {
         setNavigationBarTransparent();
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 }

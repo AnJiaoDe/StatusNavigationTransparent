@@ -16,9 +16,4 @@ public class Status5Activity extends StatusNavigationActivity {
 //        setStatusBarNoFill();
 //        setStatusBarColor(0x33000000);
     }
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }

@@ -13,10 +13,4 @@ public class Status6Activity extends StatusNavigationActivity {
         setContentView(R.layout.activity_status6);
         setStatusBarNoFillAndTransParent();
     }
-
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }

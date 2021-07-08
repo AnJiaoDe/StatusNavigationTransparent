@@ -14,9 +14,4 @@ public class Status00Activity extends StatusNavigationActivity {
         //此行可不写，默认就是0xfff2f2f2
         setStatusBarColor(getStatusBarColorDefault());
     }
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }
