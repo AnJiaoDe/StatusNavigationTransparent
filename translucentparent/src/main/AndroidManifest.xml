@@ -1,4 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cy.translucentparent">
+    <application>
+        <!--刘海屏全屏设置，必须加入-->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+    </application>
 
 </manifest>
