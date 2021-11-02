@@ -114,7 +114,13 @@ public class StatusNavigationUtils {
         Window window = activity.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         int ui = window.getDecorView().getSystemUiVisibility();
-        ui |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (isLightColor(color)) {
+                ui |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR; //设置导航栏中字体的颜色为黑色
+            } else {
+                ui &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR; //设置导航栏中字体颜色为白色
+            }
+        }
         window.getDecorView().setSystemUiVisibility(ui);
         window.setNavigationBarColor(color);
     }

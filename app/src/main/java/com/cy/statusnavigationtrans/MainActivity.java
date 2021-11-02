@@ -12,6 +12,7 @@ public class MainActivity extends StatusNavigationActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setNavigationBarColor(Color.BLACK);
         setContentView(R.layout.activity_main);
         findViewById(R.id.btn_00).setOnClickListener(this);
         findViewById(R.id.btn_0).setOnClickListener(this);
