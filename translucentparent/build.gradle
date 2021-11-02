@@ -2,12 +2,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion var.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion var.minSdkVersion
+        targetSdkVersion var.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -33,8 +32,5 @@ artifacts {
 
 dependencies {
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-    testCompileOnly 'junit:junit:4.12'
-    androidTestCompileOnly 'androidx.test.ext:junit:1.1.1'
-    androidTestCompileOnly 'androidx.test.espresso:espresso-core:3.2.0'
     compileOnly 'androidx.appcompat:appcompat:+'
 }
