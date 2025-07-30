@@ -39,24 +39,24 @@ dependencies {
 apply plugin: 'maven-publish'
 
 afterEvaluate {
-    // 生成 javadoc
-    task androidJavadoc(type: Javadoc) {
+    // 生成 Javadoc（避免 Android 类未找到）
+    def androidJavadoc = tasks.register("androidJavadoc", Javadoc) {
         source = android.sourceSets.main.java.srcDirs
-        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-        failOnError false
+        classpath += files(android.bootClasspath)
+        failOnError = false
     }
 
-    // 打包 javadoc.jar
-    task javadocJar(type: Jar) {
-        dependsOn androidJavadoc
-        archiveClassifier.set("javadoc")
-        from androidJavadoc.destinationDir
-    }
-
-    // 打包 sources.jar
-    task sourcesJar(type: Jar) {
+    // sourcesJar
+    def sourcesJar = tasks.register("sourcesJar", Jar) {
         archiveClassifier.set("sources")
         from android.sourceSets.main.java.srcDirs
+    }
+
+    // javadocJar
+    def javadocJar = tasks.register("javadocJar", Jar) {
+        dependsOn androidJavadoc
+        archiveClassifier.set("javadoc")
+        from androidJavadoc.get().destinationDir
     }
 
     publishing {
@@ -64,12 +64,12 @@ afterEvaluate {
             mavenJava(MavenPublication) {
                 from components.release
 
-                // 👇 显式声明任务依赖，解决 Gradle 8 报错
-                artifact(sourcesJar) {
-                    builtBy sourcesJar
+                // 🔥 显式声明依赖，解决 Gradle 8 错误
+                artifact(sourcesJar.get()) {
+                    builtBy(sourcesJar.get())
                 }
-                artifact(javadocJar) {
-                    builtBy javadocJar
+                artifact(javadocJar.get()) {
+                    builtBy(javadocJar.get())
                 }
             }
         }
