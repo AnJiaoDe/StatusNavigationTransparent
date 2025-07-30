@@ -1,17 +1,17 @@
 package com.cy.statusnavigationtrans;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 
-import com.cy.translucentparent.StatusNavigationActivity;
-
-public class Status0Activity extends StatusNavigationActivity {
+public class Status0Activity extends BaseActivity {
+    @Override
+    public int setStatusBarColor() {
+        return Color.RED;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status0);
-        setStatusBarColor(getResources().getColor(R.color.theme));
     }
-
 }

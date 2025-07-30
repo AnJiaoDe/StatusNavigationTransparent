@@ -1,20 +1,20 @@
 package com.cy.statusnavigationtrans;
 
 import android.os.Bundle;
-import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.cy.translucentparent.StaNavUtils;
 
-import com.cy.translucentparent.StatusNavigationActivity;
-import com.cy.translucentparent.StatusNavigationUtils;
-
-public class Navigation2Activity extends StatusNavigationActivity {
+public class Navigation2Activity extends BaseActivity {
+    @Override
+    public boolean addNavigationBarView() {
+        return false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav2);
-        setNavigationBarTransparent();
+        StaNavUtils.setNavigationBarTransparent(this,getResources().getColor(R.color.colorPrimary));
     }
 
 }

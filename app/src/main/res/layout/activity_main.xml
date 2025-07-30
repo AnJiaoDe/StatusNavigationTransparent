@@ -3,81 +3,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:background="#000"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <Button
             android:id="@+id/btn_00"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="系统StatusBar填充界面,自定义背景颜色(文字、icon颜色根据StatusBar颜色亮度设置为黑色)" />
+            android:text="系统StatusBar填充界面,自定义背景颜色(文字、icon颜色自动根据StatusBar颜色亮度设置为黑色)" />
 
         <Button
             android:id="@+id/btn_0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="系统StatusBar填充界面,自定义背景颜色(文字、icon颜色根据StatusBar颜色亮度设置为白色)" />
-
-        <Button
-            android:id="@+id/btn_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="系统StatusBar不填充界面,布局添加StatusBarView实现半透明" />
-
-        <Button
-            android:id="@+id/btn_5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="系统StatusBar不填充界面,且半透明于图片之上" />
+            android:text="系统StatusBar填充界面,自定义背景颜色(文字、icon颜色自动根据StatusBar颜色亮度设置为白色)" />
 
         <Button
             android:id="@+id/btn_6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="系统StatusBar不填充界面,且全透明于图片之上" />
+            android:text="系统StatusBar不填充界面,且全透明于图片之上，修改状态栏icon颜色，使得和图片协调" />
 
         <Button
             android:id="@+id/btn_7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="系统navigationbar填充界面,自定义颜色" />
-<!--        <Button-->
-<!--            android:id="@+id/btn_8"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="系统navigationbar不填充界面,且半透明" />-->
+            android:text="系统navigationbar填充界面,自定义颜色，icon颜色自动根据navigationbar颜色亮度进行设置" />
+        <!--        <Button-->
+        <!--            android:id="@+id/btn_8"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="系统navigationbar不填充界面,且半透明" />-->
 
         <Button
             android:id="@+id/btn_9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="系统navigationbar不填充界面,且全透明" />
+            android:text="系统navigationbar不填充界面,且全/半透明" />
+
         <Button
             android:id="@+id/btn_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="隐藏statusbar" />
+
         <Button
             android:id="@+id/btn_11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="隐藏navigationbar" />
+
         <Button
             android:id="@+id/btn_12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="隐藏statusbar、navigationbar，全屏" />
-        <Button
-            android:id="@+id/btn_13"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="图片预览，改变statusbar、navigationbar" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="dsgdfgdfgdsfgdfgdsgdfgdfgdsfgdfgdsgdfgdfgdsfgdfg\ndsgdfgdfgdsfgdfgdsgdfgdfgdsfgdfgdsgdfgdfgdsfgdfg\ndsgdfgdfgdsfgdfgdsgdfgdfgdsfgdfgdsgdfgdfgdsfgdfg\ndsgdfgdfgdsfgdfgdsgdfgdfgdsfgdfgdsgdfgdfgdsfgdfg\ndsgdfgdfgdsfgdfgdsgdfgdfgdsfgdfgdsgdfgdfgdsfgdfg\ndsgdfgdfgdsfgdfg\ndsgdfgdfgdsfgdfg\ndsgdfgdfgdsfgdfg\ndsgdfgdfgdsfgdfg\ndsgdfgdfgdsfgdfg\ndsgdfgdfgdsfgdfg\ndsgdfgdfgdsfgdfg\ndsgdfgdfgdsfgdfg\ndsgdfgdfgdsfgdfg\n"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </ScrollView>

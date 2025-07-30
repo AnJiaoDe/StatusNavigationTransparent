@@ -8,14 +8,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StatusNavigationSwitchActivity"></activity>
+        <activity android:name=".BaseSwitchActivity"></activity>
         <activity android:name=".HideNavigationBarActivity" />
         <activity android:name=".HideStatusBarActivity" />
         <activity android:name=".FullScreenActivity" />
         <activity android:name=".Navigation0Activity" />
         <activity android:name=".Status00Activity" />
         <activity android:name=".Status0Activity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

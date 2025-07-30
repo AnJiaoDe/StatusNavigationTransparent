@@ -5,70 +5,77 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
-import com.cy.translucentparent.StatusNavigationActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends StatusNavigationActivity implements View.OnClickListener {
+import com.cy.translucentparent.StaNavUtils;
 
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setNavigationBarColor(Color.BLACK);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.btn_00).setOnClickListener(this);
-        findViewById(R.id.btn_0).setOnClickListener(this);
-        findViewById(R.id.btn_2).setOnClickListener(this);
-        findViewById(R.id.btn_5).setOnClickListener(this);
-        findViewById(R.id.btn_6).setOnClickListener(this);
-        findViewById(R.id.btn_7).setOnClickListener(this);
-//        findViewById(R.id.btn_8).setOnClickListener(this);
-        findViewById(R.id.btn_9).setOnClickListener(this);
-        findViewById(R.id.btn_10).setOnClickListener(this);
-        findViewById(R.id.btn_11).setOnClickListener(this);
-        findViewById(R.id.btn_12).setOnClickListener(this);
-        findViewById(R.id.btn_13).setOnClickListener(this);
-//        StatusNavigationUtils.setStatusBarColor(this, getResources().getColor(R.color.colorPrimary));
-        setStatusBarColor(getResources().getColor(R.color.theme));
+        findViewById(R.id.btn_00).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Status00Activity.class));
+
+            }
+        });
+        findViewById(R.id.btn_0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Status0Activity.class));
+
+            }
+        });
+        findViewById(R.id.btn_6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Status6Activity.class));
+            }
+        });
+        findViewById(R.id.btn_7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Navigation0Activity.class));
+
+            }
+        });
+        findViewById(R.id.btn_9).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Navigation2Activity.class));
+            }
+        });
+        findViewById(R.id.btn_10).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, HideStatusBarActivity.class));
+
+            }
+        });
+        findViewById(R.id.btn_11).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, HideNavigationBarActivity.class));
+
+            }
+        });
+        findViewById(R.id.btn_12).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FullScreenActivity.class));
+
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_00:
-                startActivity(new Intent(this,Status00Activity.class));
-                break;
-            case R.id.btn_0:
-                startActivity(new Intent(this,Status0Activity.class));
-                break;
-            case R.id.btn_2:
-                startActivity(new Intent(this,Status2Activity.class));
-                break;
-            case R.id.btn_5:
-                startActivity(new Intent(this,Status5Activity.class));
-                break;
-            case R.id.btn_6:
-                startActivity(new Intent(this,Status6Activity.class));
-                break;
-            case R.id.btn_7:
-                startActivity(new Intent(this,Navigation0Activity.class));
-                break;
-//            case R.id.btn_8:
-//                startActivity(new Intent(this,Navigation1Activity.class));
-//                break;
-            case R.id.btn_9:
-                startActivity(new Intent(this,Navigation2Activity.class));
-                break;
-            case R.id.btn_10:
-                startActivity(new Intent(this,HideStatusBarActivity.class));
-                break;
-            case R.id.btn_11:
-                startActivity(new Intent(this,HideNavigationBarActivity.class));
-                break;
-            case R.id.btn_12:
-                startActivity(new Intent(this,FullScreenActivity.class));
-                break;
-            case R.id.btn_13:
-                startActivity(new Intent(this,StatusNavigationSwitchActivity.class));
-                break;
-        }
     }
 }

@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:id="@+id/iv"
-        android:src="@drawable/huge" />
+        android:src="@drawable/paper" />
 
     <RelativeLayout
         android:layout_width="match_parent"

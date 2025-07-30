@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
-    compileSdkVersion var.compileSdkVersion
-
+    compileSdkVersion 35
+    namespace 'com.cy.translucentparent'
     defaultConfig {
-        minSdkVersion var.minSdkVersion
-        targetSdkVersion var.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 35
         versionCode 1
         versionName "1.0"
 
@@ -19,18 +19,27 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    //指定jdk版本
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 //---------------------------------------------下面的必加,加上下面的作用是在上传后会带上注释,不然会发现没有注释
 // 打包源码
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-artifacts {
-    archives sourcesJar
-}
+//task sourcesJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    classifier = 'sources'
+//}
+//artifacts {
+//    archives sourcesJar
+//}
 
 dependencies {
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly 'androidx.appcompat:appcompat:+'
+    compileOnly 'androidx.appcompat:appcompat:1.7.0'
+    compileOnly 'androidx.activity:activity:1.8.0'
 }

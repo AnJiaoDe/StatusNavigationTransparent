@@ -2,8 +2,12 @@ package com.cy.translucentparent;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 
 /**
@@ -11,20 +15,25 @@ import android.view.View;
  */
 
 public class StatusBarView extends View {
-    private Context context;
+    private int height;
+
     public StatusBarView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public StatusBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.context=context;
-
+        StaNavUtils.getStatusBarHeight(this, new StaNavUtils.CallbackStatusBar() {
+            @Override
+            public void onStatusBarHeightGeted(int h) {
+                height = h;
+                requestLayout();
+            }
+        });
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
-        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(ScreenUtils.getStatusBarHeight(context), MeasureSpec.EXACTLY));
+        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
     }
 }
