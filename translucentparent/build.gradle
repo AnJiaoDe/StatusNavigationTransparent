@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 35
@@ -28,18 +29,43 @@ android {
         jvmTarget = "17"
     }
 }
-//---------------------------------------------下面的必加,加上下面的作用是在上传后会带上注释,不然会发现没有注释
-// 打包源码
-//task sourcesJar(type: Jar) {
-//    from android.sourceSets.main.java.srcDirs
-//    classifier = 'sources'
-//}
-//artifacts {
-//    archives sourcesJar
-//}
 
 dependencies {
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly 'androidx.appcompat:appcompat:1.7.0'
     compileOnly 'androidx.activity:activity:1.8.0'
+}
+
+//---------------------------------------------下面的必加,加上下面的作用是在上传后会带上注释,不然会发现没有注释
+// 打包源码
+afterEvaluate {
+    // 生成 javadoc
+    task androidJavadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+        failOnError false
+    }
+
+    // javadoc.jar
+    task javadocJar(type: Jar) {
+        dependsOn androidJavadoc
+        archiveClassifier.set("javadoc")
+        from androidJavadoc.destinationDir
+    }
+
+    // sources.jar
+    task sourcesJar(type: Jar) {
+        archiveClassifier.set("sources")
+        from android.sourceSets.main.java.srcDirs
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.release
+                artifact sourcesJar
+                artifact javadocJar
+            }
+        }
+    }
 }

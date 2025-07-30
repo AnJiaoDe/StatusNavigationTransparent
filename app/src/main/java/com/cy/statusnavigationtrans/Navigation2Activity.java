@@ -14,7 +14,7 @@ public class Navigation2Activity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav2);
-        StaNavUtils.setNavigationBarTransparent(this,getResources().getColor(R.color.colorPrimary));
+        StaNavUtils.setNavigationBarTransparent(this,false);
     }
 
 }

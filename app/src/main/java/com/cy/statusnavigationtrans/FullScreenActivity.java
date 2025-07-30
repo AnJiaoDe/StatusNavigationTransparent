@@ -23,7 +23,7 @@ public class FullScreenActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_screen);
         StaNavUtils.setAppearanceLightStatusBars(this,false);
-        StaNavUtils.setAppearanceLightNavigationBars(this,false);
+        StaNavUtils.setNavigationBarTransparent(this,false);
         findViewById(R.id.iv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

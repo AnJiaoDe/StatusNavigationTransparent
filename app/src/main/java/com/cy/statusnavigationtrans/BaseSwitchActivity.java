@@ -28,7 +28,7 @@ public class BaseSwitchActivity extends BaseActivity {
         final ViewGroup rl1=findViewById(R.id.rl1);
         final ViewGroup rl2=findViewById(R.id.rl2);
 
-        StaNavUtils.setNavigationBarTransparent(BaseSwitchActivity.this, Color.RED);
+        StaNavUtils.setNavigationBarTransparent(BaseSwitchActivity.this, false);
         findViewById(R.id.iv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

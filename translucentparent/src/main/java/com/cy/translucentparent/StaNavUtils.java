@@ -152,11 +152,11 @@ public class StaNavUtils {
     /**
      * * 导航栏全透明，布局会填充到导航栏底部，有些手机是半透明
      * @param activity
-     * @param color_bg 传入背景色，使得导航栏图标颜色根据背景色修改颜色为亮或者暗
+     * @param isLightColor 使得导航栏图标颜色根据背景色修改颜色为亮或者暗
      */
-    public static void setNavigationBarTransparent(Activity activity, @ColorInt int color_bg) {
+    public static void setNavigationBarTransparent(Activity activity,  boolean isLightColor) {
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        setAppearanceLightNavigationBars(activity, isLightColor(color_bg));
+        setAppearanceLightNavigationBars(activity, isLightColor);
     }
 
     /**
