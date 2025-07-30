@@ -31,12 +31,12 @@ android {
     }
 
     // ✅ Gradle 自动生成 sources/javadoc Jar
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
+//    publishing {
+//        singleVariant("release") {
+//            withSourcesJar()
+//            withJavadocJar()
+//        }
+//    }
 }
 
 dependencies {
@@ -47,6 +47,10 @@ dependencies {
 
 afterEvaluate {
     publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
         publications {
             release(MavenPublication) {
                 from components.release
