@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.android'
-apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 35
@@ -37,7 +36,8 @@ dependencies {
 }
 
 //---------------------------------------------下面的必加,加上下面的作用是在上传后会带上注释,不然会发现没有注释
-// 打包源码
+apply plugin: 'maven-publish'
+
 afterEvaluate {
     // 生成 javadoc
     task androidJavadoc(type: Javadoc) {
@@ -46,14 +46,14 @@ afterEvaluate {
         failOnError false
     }
 
-    // javadoc.jar
+    // 打包 javadoc.jar
     task javadocJar(type: Jar) {
         dependsOn androidJavadoc
         archiveClassifier.set("javadoc")
         from androidJavadoc.destinationDir
     }
 
-    // sources.jar
+    // 打包 sources.jar
     task sourcesJar(type: Jar) {
         archiveClassifier.set("sources")
         from android.sourceSets.main.java.srcDirs
@@ -63,8 +63,14 @@ afterEvaluate {
         publications {
             mavenJava(MavenPublication) {
                 from components.release
-                artifact sourcesJar
-                artifact javadocJar
+
+                // 👇 显式声明任务依赖，解决 Gradle 8 报错
+                artifact(sourcesJar) {
+                    builtBy sourcesJar
+                }
+                artifact(javadocJar) {
+                    builtBy javadocJar
+                }
             }
         }
     }
