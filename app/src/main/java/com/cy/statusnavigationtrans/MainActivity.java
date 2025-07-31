@@ -23,7 +23,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Status00Activity.class));
-
             }
         });
         findViewById(R.id.btn_0).setOnClickListener(new View.OnClickListener() {

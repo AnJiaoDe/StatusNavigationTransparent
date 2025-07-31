@@ -5,10 +5,6 @@ import android.os.Bundle;
 import com.cy.translucentparent.StaNavUtils;
 
 public class Navigation2Activity extends BaseActivity {
-    @Override
-    public boolean addNavigationBarView() {
-        return false;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

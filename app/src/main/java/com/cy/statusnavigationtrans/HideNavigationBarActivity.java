@@ -7,11 +7,6 @@ import com.cy.translucentparent.StaNavUtils;
 public class HideNavigationBarActivity extends BaseActivity {
 
     @Override
-    public boolean addNavigationBarView() {
-        return false;
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hide_navigation_bar);

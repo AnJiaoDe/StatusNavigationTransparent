@@ -12,16 +12,6 @@ public class BaseSwitchActivity extends BaseActivity {
     private boolean fullScreen=false;
 
     @Override
-    public boolean addStatusBarView() {
-        return false;
-    }
-
-    @Override
-    public boolean addNavigationBarView() {
-        return false;
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status_navigation_switch);

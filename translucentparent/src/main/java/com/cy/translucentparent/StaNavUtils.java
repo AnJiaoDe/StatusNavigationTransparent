@@ -2,6 +2,7 @@ package com.cy.translucentparent;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.icu.text.IDNA;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,23 +13,27 @@ import android.widget.LinearLayout;
 import androidx.activity.ComponentActivity;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.ColorInt;
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
+import java.net.IDN;
 import java.util.HashMap;
 import java.util.Map;
 
 
 /**
- * Created by lenovo on 2017/4/25.
+ * Created by lenovo on 2017/4/25. 做安卓开发，至少有一半的时间都在折腾适配问题，垃圾安卓，垃圾就是垃圾，永远都是垃圾
  */
 
 public class StaNavUtils {
+    private static final @IdRes int ID_STATUSBAR = R.id.s_t_a_t_u_s_b_a_r;
+    private static final @IdRes int ID_NAVIGATIONBAR = R.id.n_a_v_i_g_a_t_i_o_n_b_a_r;
 
-    public static void edgeToEdge(ComponentActivity componentActivity, @NonNull Callback callback) {
+    public static void edgeToEdge(ComponentActivity componentActivity) {
         EdgeToEdge.enable(componentActivity);
 
         ViewGroup decorView = (ViewGroup) componentActivity.getWindow().getDecorView();
@@ -38,25 +43,24 @@ public class StaNavUtils {
         LinearLayout linearLayout = new LinearLayout(componentActivity);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
-        if (callback.addStatusBarView()) {
-            StatusBarView statusBarView = new StatusBarView(componentActivity);
-            statusBarView.setBackgroundColor(callback.setStatusBarColor());
-            setAppearanceLightStatusBars(componentActivity, isLightColor(callback.setStatusBarColor()));
-            linearLayout.addView(statusBarView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        }
+        StatusBarView statusBarView = new StatusBarView(componentActivity);
+        statusBarView.setId(ID_STATUSBAR);
+//        statusBarView.setBackgroundColor(Color.WHITE);
+//        setAppearanceLightStatusBars(componentActivity, true);
+        setStatusBarColor(componentActivity, Color.WHITE);
+        linearLayout.addView(statusBarView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0);
         layoutParams.weight = 1;
         linearLayout.addView(decorChild, layoutParams);
 
-        if (callback.addNavigationBarView()) {
-            NavigationBarView navigationBarView = new NavigationBarView(componentActivity);
-            //这样会是半透明的，不好看
+        NavigationBarView navigationBarView = new NavigationBarView(componentActivity);
+        navigationBarView.setId(ID_NAVIGATIONBAR);
+        //这样会是半透明的，不好看
 //            navigationBarView.setBackgroundColor(callback.setNavigationBarColor());
-            setNavigationBarColor(componentActivity, callback.setNavigationBarColor());
-            setAppearanceLightNavigationBars(componentActivity, isLightColor(callback.setNavigationBarColor()));
-            linearLayout.addView(navigationBarView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        }
+//        setAppearanceLightNavigationBars(componentActivity, isLightColor(callback.setNavigationBarColor()));
+        setNavigationBarColor(componentActivity, Color.WHITE);
+        linearLayout.addView(navigationBarView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         decorView.addView(linearLayout, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
@@ -83,24 +87,89 @@ public class StaNavUtils {
     public static void showStatusBar(Activity activity, boolean show) {
         Window window = activity.getWindow();
         WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(window, window.getDecorView());
+        View view_statusbar = null;
+        try {
+            view_statusbar = activity.findViewById(ID_STATUSBAR);
+        } catch (Exception e) {
+
+        }
         if (show) {
             controller.show(WindowInsetsCompat.Type.statusBars());
         } else {
+            if (view_statusbar != null) view_statusbar.setVisibility(View.GONE);
+
             controller.hide(WindowInsetsCompat.Type.statusBars());
             // 用户滑动边缘拉出状态栏后，还能隐藏
             controller.setSystemBarsBehavior(
                     WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
             //防止14版本不灵
-            hideStatusBar(activity);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                // 设置窗口占用刘海区
+                WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
+                lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+                activity.getWindow().setAttributes(lp);
+            }
+
+            final View decorView = activity.getWindow().getDecorView();
+            int ui = decorView.getSystemUiVisibility();
+            ui |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            decorView.setSystemUiVisibility(ui);
+        }
+    }
+
+    /**
+     * 内容是否顶入状态栏
+     * @param activity
+     * @param fill
+     */
+    public static void fillStatusBar(Activity activity, boolean fill) {
+        View view_statusbar = null;
+        try {
+            view_statusbar = activity.findViewById(ID_STATUSBAR);
+        } catch (Exception e) {
+
+        }
+        if (fill) {
+            if (view_statusbar != null) view_statusbar.setVisibility(View.GONE);
+        } else {
+            if (view_statusbar != null) view_statusbar.setVisibility(View.VISIBLE);
+        }
+    }
+    /**
+     * 内容是否顶入状态栏
+     * @param activity
+     * @param fill
+     */
+    public static void fillNavigationBar(Activity activity, boolean fill) {
+        View view_navigarion = null;
+        try {
+            view_navigarion = activity.findViewById(ID_NAVIGATIONBAR);
+        } catch (Exception e) {
+
+        }
+        if (fill) {
+            if (view_navigarion != null) view_navigarion.setVisibility(View.GONE);
+        } else {
+            if (view_navigarion != null) view_navigarion.setVisibility(View.VISIBLE);
         }
     }
 
     public static void showNavigationBar(Activity activity, boolean show) {
         Window window = activity.getWindow();
         WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(window, window.getDecorView());
+        View view_navigationbar = null;
+        try {
+            view_navigationbar = activity.findViewById(ID_NAVIGATIONBAR);
+        } catch (Exception e) {
+
+        }
         if (show) {
             controller.show(WindowInsetsCompat.Type.navigationBars());
         } else {
+            if (view_navigationbar != null) view_navigationbar.setVisibility(View.GONE);
+
             controller.hide(WindowInsetsCompat.Type.navigationBars());
             // 用户滑动边缘拉出导航栏后，还能隐藏
             controller.setSystemBarsBehavior(
@@ -146,18 +215,62 @@ public class StaNavUtils {
             return false; // It's a dark color
         }
     }
+
     /**
      * * 导航栏全透明，布局会填充到导航栏底部，有些手机是半透明
      * @param activity
      * @param isLightColor 使得导航栏图标颜色根据背景色修改颜色为亮或者暗
      */
-    public static void setNavigationBarTransparent(Activity activity,  boolean isLightColor) {
+    public static void setNavigationBarTransparent(Activity activity, boolean isLightColor) {
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        fillNavigationBar(activity,true);
         setAppearanceLightNavigationBars(activity, isLightColor);
     }
 
     /**
+     * 状态栏自定义背景颜色,6.0以上可修改状态栏字体颜色，icon颜色
+     *
+     * @param activity
+     * @param color
+     */
+    public static void setStatusBarColor(Activity activity, int color) {
+        try {
+            /**
+             *  Caused by: java.lang.NullPointerException: Attempt to invoke virtual method 'void androidx.appcompat.widget.ContentFrameLayout.setDecorPadding(int, int, int, int)' on a null object reference
+             *  at androidx.appcompat.app.AppCompatDelegateImpl.applyFixedSizeWindow(AppCompatDelegateImpl.java:1085)
+             * at androidx.appcompat.app.AppCompatDelegateImpl.ensureSubDecor(AppCompatDelegateImpl.java:879)
+             * at androidx.appcompat.app.AppCompatDelegateImpl.findViewById(AppCompatDelegateImpl.java:667)
+             */
+            View view_statusbar = activity.findViewById(ID_STATUSBAR);
+            if (view_statusbar != null) view_statusbar.setBackgroundColor(color);
+        } catch (Exception e) {
+
+        }
+        boolean isLightColor = isLightColor(color);
+        setAppearanceLightStatusBars(activity, isLightColor);
+    }
+
+    public static void setStatusBarColorOld(Activity activity, int color) {
+        Window window = activity.getWindow();
+        //去除statusbar不填充的标志
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        int ui = window.getDecorView().getSystemUiVisibility();
+        boolean isLightColor = isLightColor(color);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (isLightColor) {
+                ui |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; //设置状态栏中字体的颜色为黑色
+            } else {
+                ui &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; //设置状态栏中字体颜色为白色
+            }
+        }
+        window.getDecorView().setSystemUiVisibility(ui);
+        window.setStatusBarColor(color);
+        setAppearanceLightStatusBars(activity, isLightColor);
+    }
+
+    /**
      * 设置导航栏颜色，和setNavigationBarTransparent互斥，要么选择自定义导航栏颜色，要么选择导航栏全透明
+     *
      * @param activity
      * @param color
      */
@@ -165,8 +278,9 @@ public class StaNavUtils {
         Window window = activity.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         int ui = window.getDecorView().getSystemUiVisibility();
+        boolean isLightColor = isLightColor(color);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (isLightColor(color)) {
+            if (isLightColor) {
                 ui |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR; //设置导航栏中字体的颜色为黑色
             } else {
                 ui &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR; //设置导航栏中字体颜色为白色
@@ -174,21 +288,7 @@ public class StaNavUtils {
         }
         window.getDecorView().setSystemUiVisibility(ui);
         window.setNavigationBarColor(color);
-    }
-    private static void hideStatusBar(final Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            // 设置窗口占用刘海区
-            WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
-            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-            activity.getWindow().setAttributes(lp);
-        }
-
-        final View decorView = activity.getWindow().getDecorView();
-        int ui = decorView.getSystemUiVisibility();
-        ui |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(ui);
+        setAppearanceLightNavigationBars(activity, isLightColor);
     }
 
     /**
@@ -218,17 +318,5 @@ public class StaNavUtils {
 
     public static interface CallbackNavigationBar {
         public void onNavigationBarHeightGeted(int height);
-    }
-
-    public static interface Callback {
-        public boolean addStatusBarView();
-
-        public boolean addNavigationBarView();
-
-        @ColorInt
-        public int setStatusBarColor();
-
-        @ColorInt
-        public int setNavigationBarColor();
     }
 }
