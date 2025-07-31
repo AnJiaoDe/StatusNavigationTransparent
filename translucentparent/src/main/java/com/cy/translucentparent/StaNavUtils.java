@@ -1,7 +1,10 @@
 package com.cy.translucentparent;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Insets;
 import android.icu.text.IDNA;
 import android.os.Build;
 import android.view.View;
@@ -121,6 +124,7 @@ public class StaNavUtils {
 
     /**
      * 内容是否顶入状态栏
+     *
      * @param activity
      * @param fill
      */
@@ -137,8 +141,10 @@ public class StaNavUtils {
             if (view_statusbar != null) view_statusbar.setVisibility(View.VISIBLE);
         }
     }
+
     /**
      * 内容是否顶入状态栏
+     *
      * @param activity
      * @param fill
      */
@@ -218,12 +224,13 @@ public class StaNavUtils {
 
     /**
      * * 导航栏全透明，布局会填充到导航栏底部，有些手机是半透明
+     *
      * @param activity
      * @param isLightColor 使得导航栏图标颜色根据背景色修改颜色为亮或者暗
      */
     public static void setNavigationBarTransparent(Activity activity, boolean isLightColor) {
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        fillNavigationBar(activity,true);
+        fillNavigationBar(activity, true);
         setAppearanceLightNavigationBars(activity, isLightColor);
     }
 
@@ -311,7 +318,32 @@ public class StaNavUtils {
             return insets;
         });
     }
+//垃圾安卓，都他妈不灵了，damn
+//    public static int getStatusBarHeight(Activity activity) {
+//        WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(activity.getWindow().getDecorView());
+//        if (insets == null) return 0;
+//        return insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+//        return insets.getSystemWindowInsetTop();
+//    }
+//
+//    public static int getNavigationBarHeight(Activity activity) {
+//        WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(activity.getWindow().getDecorView());
+//        if (insets == null) return 0;
+//        return insets.getInsets(WindowInsetsCompat.Type.navigationBars()).top;
+//    }
 
+    //安卓14不灵了
+//    public static int getStatusBarHeight(Context context) {
+//        Resources resources = context.getResources();
+//        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+//        return resources.getDimensionPixelSize(resourceId);
+//    }
+//
+//    public static int getNavigationBarHeight(Context context) {
+//        Resources resources = context.getResources();
+//        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+//        return resources.getDimensionPixelSize(resourceId);
+//    }
     public static interface CallbackStatusBar {
         public void onStatusBarHeightGeted(int height);
     }
