@@ -297,26 +297,53 @@ public class StaNavUtils {
         window.setNavigationBarColor(color);
         setAppearanceLightNavigationBars(activity, isLightColor);
     }
+    private static void requestApplyInsets(View view){
+        // 如果 view 已经 attach 过，强制请求一次
+        if (view.isAttachedToWindow()) {
+            ViewCompat.requestApplyInsets(view);
+        } else {
+            // 等待 attach 后再请求
+            view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                @Override
+                public void onViewAttachedToWindow(View v) {
+                    ViewCompat.requestApplyInsets(v);
+                    v.removeOnAttachStateChangeListener(this);
+                }
+
+                @Override
+                public void onViewDetachedFromWindow(View v) {
+                }
+            });
+        }
+    }
 
     /**
-     * 当手动调用了隐藏statusbar的方法，会再次回调onApplyWindowInsets，这时候 高度就是0，
-     * statusbarview和navigationbarview中会收到回调，故而切换statusbar和naviagtionbar的显示和隐藏，无需remove statusbarview和navigationbarview
-     *
+     * statusbarview和navigationbarview中会收到回调，
+     * 故而切换statusbar和naviagtionbar的显示和隐藏，
+     * 无需remove statusbarview和navigationbarview
      * @param view
      * @param callbackStatusBar
      */
     public static void getStatusBarHeight(View view, CallbackStatusBar callbackStatusBar) {
         ViewCompat.setOnApplyWindowInsetsListener(view, (v, insets) -> {
-            callbackStatusBar.onStatusBarHeightGeted(insets.getInsets(WindowInsetsCompat.Type.statusBars()).top);
+            int h = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+            if (h <= 0) h = ScreenUtils.getScreenHeight(view.getContext());
+            callbackStatusBar.onStatusBarHeightGeted(h);
             return insets;
         });
+        //防止不回调
+       requestApplyInsets(view);
     }
 
     public static void getNavigationBarHeight(View view, CallbackNavigationBar callbackNavigationBar) {
         ViewCompat.setOnApplyWindowInsetsListener(view, (v, insets) -> {
-            callbackNavigationBar.onNavigationBarHeightGeted(insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom);
+            int h = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom;
+            if (h <= 0) h = ScreenUtils.getNavigationBarHeight(view.getContext());
+            callbackNavigationBar.onNavigationBarHeightGeted(h);
             return insets;
         });
+        //防止不回调
+        requestApplyInsets(view);
     }
 //垃圾安卓，都他妈不灵了，damn
 //    public static int getStatusBarHeight(Activity activity) {
