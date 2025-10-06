@@ -15,25 +15,16 @@ import androidx.core.view.WindowInsetsCompat;
  */
 
 public class StatusBarView extends View {
-    private int height;
-
     public StatusBarView(Context context) {
         this(context, null);
     }
 
     public StatusBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        StaNavUtils.getStatusBarHeight(this, new StaNavUtils.CallbackStatusBar() {
-            @Override
-            public void onStatusBarHeightGeted(int h) {
-                height = h;
-                requestLayout();
-            }
-        });
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
+        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(StaNavUtils.getStatusBarHeight(this), MeasureSpec.EXACTLY));
     }
 }
