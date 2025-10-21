@@ -48,8 +48,6 @@ public class StaNavUtils {
 
         StatusBarView statusBarView = new StatusBarView(componentActivity);
         statusBarView.setId(ID_STATUSBAR);
-//        statusBarView.setBackgroundColor(Color.WHITE);
-//        setAppearanceLightStatusBars(componentActivity, true);
         setStatusBarColor(componentActivity, Color.WHITE);
         linearLayout.addView(statusBarView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -59,11 +57,9 @@ public class StaNavUtils {
 
         NavigationBarView navigationBarView = new NavigationBarView(componentActivity);
         navigationBarView.setId(ID_NAVIGATIONBAR);
-        //这样会是半透明的，不好看
-//            navigationBarView.setBackgroundColor(callback.setNavigationBarColor());
-//        setAppearanceLightNavigationBars(componentActivity, isLightColor(callback.setNavigationBarColor()));
         setNavigationBarColor(componentActivity, Color.WHITE);
         linearLayout.addView(navigationBarView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
         decorView.addView(linearLayout, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
@@ -248,13 +244,30 @@ public class StaNavUtils {
              * at androidx.appcompat.app.AppCompatDelegateImpl.ensureSubDecor(AppCompatDelegateImpl.java:879)
              * at androidx.appcompat.app.AppCompatDelegateImpl.findViewById(AppCompatDelegateImpl.java:667)
              */
-            View view_statusbar = activity.findViewById(ID_STATUSBAR);
-            if (view_statusbar != null) view_statusbar.setBackgroundColor(color);
+            View view = activity.findViewById(ID_STATUSBAR);
+            view.setBackgroundColor(color);
         } catch (Exception e) {
 
         }
         boolean isLightColor = isLightColor(color);
         setAppearanceLightStatusBars(activity, isLightColor);
+    }
+
+    public static void setNavigationBarColor(Activity activity, int color) {
+        try {
+            /**
+             *  Caused by: java.lang.NullPointerException: Attempt to invoke virtual method 'void androidx.appcompat.widget.ContentFrameLayout.setDecorPadding(int, int, int, int)' on a null object reference
+             *  at androidx.appcompat.app.AppCompatDelegateImpl.applyFixedSizeWindow(AppCompatDelegateImpl.java:1085)
+             * at androidx.appcompat.app.AppCompatDelegateImpl.ensureSubDecor(AppCompatDelegateImpl.java:879)
+             * at androidx.appcompat.app.AppCompatDelegateImpl.findViewById(AppCompatDelegateImpl.java:667)
+             */
+            View view = activity.findViewById(ID_NAVIGATIONBAR);
+            view.setBackgroundColor(color);
+        } catch (Exception e) {
+
+        }
+        boolean isLightColor = isLightColor(color);
+        setAppearanceLightNavigationBars(activity, isLightColor);
     }
 
     public static void setStatusBarColorOld(Activity activity, int color) {
@@ -277,11 +290,10 @@ public class StaNavUtils {
 
     /**
      * 设置导航栏颜色，和setNavigationBarTransparent互斥，要么选择自定义导航栏颜色，要么选择导航栏全透明
-     *
      * @param activity
      * @param color
      */
-    public static void setNavigationBarColor(Activity activity, int color) {
+    public static void setNavigationBarColorOld(Activity activity, int color) {
         Window window = activity.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         int ui = window.getDecorView().getSystemUiVisibility();
@@ -302,6 +314,12 @@ public class StaNavUtils {
         return getStatusBarHeight(activity.getWindow().getDecorView());
     }
 
+    /**
+     * 注意：安卓15及以上不准确，必须 setOnApplyWindowInsetsListener 监控才能获取正确的高度
+     *
+     * @param view
+     * @return
+     */
     public static int getStatusBarHeight(View view) {
         WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(view);
         int h = 0;
@@ -314,11 +332,17 @@ public class StaNavUtils {
         return getNavigationBarHeight(activity.getWindow().getDecorView());
     }
 
+    /**
+     * 注意：安卓15及以上不准确，必须 setOnApplyWindowInsetsListener 监控才能获取正确的高度
+     *
+     * @param view
+     * @return
+     */
     public static int getNavigationBarHeight(View view) {
         WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(view);
         int h = 0;
         if (insets != null)
-            h= insets.getInsetsIgnoringVisibility(WindowInsetsCompat.Type.navigationBars()).bottom;
+            h = insets.getInsetsIgnoringVisibility(WindowInsetsCompat.Type.navigationBars()).bottom;
         return Math.max(h, getNavigationBarHeightLegacy(view.getContext()));
     }
 
